@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CompanyCard from "../components/CompanyCard";
+import CompanyCard from "../Components/CompanyCard";
 
 const FilterResultPage = () => {
   return (
