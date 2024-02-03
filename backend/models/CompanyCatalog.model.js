@@ -12,8 +12,12 @@ const companyCatalogSchema = new Schema({
     metricB: Number,
     metricC: Number,
   },
+  reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  numberOfReviews: Number,
+  industry: String,
+  location: String,
   // Any other relevant company information.
 });
 
