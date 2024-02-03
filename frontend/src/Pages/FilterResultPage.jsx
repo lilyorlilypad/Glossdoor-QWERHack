@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CompanyCard from "../Components/CompanyCard";
 
 import { useLocation } from "react-router-dom";
-import { Search } from "lucide-react";
+// import { Search } from "lucide-react";
 import "./../styles/FilterResultPage.css";
 import FilterBar from "../Components/FilterBar";
 import SearchBar from "../Components/SearchBar";
