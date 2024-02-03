@@ -1,6 +1,7 @@
 // WishlistTab.js
 import React, { useEffect, useState } from 'react';
 import WishlistCard from './WishlistCard'; // Make sure to create this component
+import apiConfig from "../apiConfig";
 
 const mockWishlistItems = {
     _id: 1,
@@ -17,8 +18,11 @@ const WishlistTab = ({ companyId }) => {
         const fetchWishlist = async () => {
             try {
                 setLoading(true);
-                const wishlist = [mockWishlistItems];
-                // const wishlist = await fetchWishlistByCompanyId(companyId); // Assume this function is implemented and fetches the data
+                const apiGetWishlistByCompanyIdUrl = apiConfig.baseUrl + apiConfig.wishlists.getByCompanyId(companyId);
+                const response = await fetch(apiGetWishlistByCompanyIdUrl); // Assume this function is implemented and fetches the data
+                const wishlist = await response.json();
+                console.log(apiGetWishlistByCompanyIdUrl)
+                console.log(wishlist)
                 setWishlistItems(wishlist);
             } catch (error) {
                 const wishlist = [mockWishlistItems]
