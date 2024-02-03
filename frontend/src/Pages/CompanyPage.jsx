@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import DEITab from "../Components/DEITab";
+import ReviewsTab from "../Components/ReviewsTab";
+import StatsTab from "../Components/StatsTab";
+import apiConfig from "../apiConfig";
 import axios from 'axios';
 
 const mockCompanyData = {
@@ -7,28 +13,52 @@ const mockCompanyData = {
     logo: "https://via.placeholder.com/150",
     companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
     deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
+    stats: {
+        metricA: 238,
+        metricB: 90,
+        metricC: -123
+    }
     // Add more fields as needed for reviews, stats, etc.
 };
 
 
 const CompanyPage = ({ match }) => {
-    const [company, setCompany] = useState(mockCompanyData);
+    const { companyId } = useParams();
+    const [companyData, setCompanyData] = useState(mockCompanyData);
     const [activeTab, setActiveTab] = useState('reviews');
 
-    // useEffect(() => {
-    //     const fetchCompany = async () => {
-    //         const response = await axios.get(`/api/companies/${match.params.id}`);
-    //         setCompany(response.data);
-    //     };
-    //     fetchCompany();
-    // }, [match.params.id]);
+    useEffect(() => {
+        console.log(companyId)
+        // Assuming your backend is running on localhost:3000, adjust the URL as needed
+        const apiUrl = apiConfig.companyCatalogs.getById(companyId)
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    // If the server responds with a 404, use mock data
+                    if (response.status === 404) {
+                        throw new Error('Company catalog not found, using mock data');
+                    }
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setCompanyData(data);
+            })
+            .catch(error => {
+                console.error(error.message);
+                // Set to mock data in case of error or if no data found
+                setCompanyData(mockCompanyData); // Ensure mockCompanyData is defined
+            });
+    }, []);
 
     return (
         <div className="container mx-auto p-4">
             <div className="text-center">
-                <h1 className="text-3xl font-bold">{company?.companyName}</h1>
-                <img src={company?.logo} alt="logo" className="mx-auto" />
-                <p>{company?.companyDescription}</p>
+                <h1 className="text-3xl font-bold">{companyData?.companyName}</h1>
+                <img src={companyData?.logo} alt="logo" className="mx-auto" />
+                <p>{companyData?.companyDescription}</p>
             </div>
             <div className="tabs">
                 <button className={`tab ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
@@ -36,9 +66,9 @@ const CompanyPage = ({ match }) => {
                 <button className={`tab ${activeTab === 'stats' ? 'active' : ''}`} onClick={() => setActiveTab('stats')}>Stats</button>
             </div>
             <div className="tab-content">
-                {/*{activeTab === 'reviews' && <ReviewsTab companyId={match.params.id} />}*/}
-                {/*{activeTab === 'dei' && <div>{company?.deiInfo}</div>}*/}
-                {/*{activeTab === 'stats' && <StatsTab companyId={match.params.id} />}*/}
+                {activeTab === 'reviews' && <ReviewsTab companyData={companyData} />}
+                {activeTab === 'dei' && <DEITab companyData={companyData} />}
+                {activeTab === 'stats' && <StatsTab companyData={companyData}/>}
             </div>
         </div>
     );
