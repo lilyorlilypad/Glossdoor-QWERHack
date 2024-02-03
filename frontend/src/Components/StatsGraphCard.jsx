@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import apiConfig from "../apiConfig";
 import Chart from 'chart.js/auto';
 
 
@@ -10,18 +11,37 @@ const mockMetrics = {
     "MetricD": [1, 2, 3, 4, 5],
     "MetricE": [1, 1, 1, 1, 1],
 }
-const StatsGraphCard = ({ companyId }) => {
+const StatsGraphCard = ({companyId}) => {
     const [metricsData, setMetricsData] = useState({});
 
     useEffect(() => {
+        const getMetricsByCompanyIdUrl = apiConfig.baseUrl + apiConfig.companyCatalogs.getMetrics(companyId);
         const fetchAndSetMetricsData = async () => {
-            // const metrics = await getMetricsByCompanyId(companyId); // Assume this function is async
-            const metrics = mockMetrics
-            setMetricsData(metrics);
+            await fetch(getMetricsByCompanyIdUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 500) {
+                            throw new Error("Server error: No metrics available");
+                        } else {
+                            throw new Error("Failed to fetch metrics");
+                        }
+                    }
+                    return response.json();
+                })
+                .then(metrics => {
+                    setMetricsData(metrics);
+                })
+                .catch(error => {
+                console.error("Failed to fetch metrics:", error);
+                setMetricsData({});
+            })
         };
-
         fetchAndSetMetricsData();
     }, [companyId]);
+
+    console.log(metricsData)
+    console.log(metricsData.length)
+
 
     const options = {
         scales: {
@@ -76,12 +96,17 @@ const StatsGraphCard = ({ companyId }) => {
 
     return (
         <div>
-            {Object.entries(metricsData).map(([metricName, metricValues], index) => (
-                <div key={index} className="mb-6">
-                    <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricName}`}</h3>
-                    <Bar data={prepareChartData(metricValues, metricName)} options={options} />
-                </div>
-            ))}
+            {Object.keys(metricsData).length === 0 ? (
+                    <p>No metrics data available.</p> // Filler message when metricsData is empty
+                ) : (
+                    Object.entries(metricsData).map(([metricName, metricValues], index) => (
+                        <div key={index} className="mb-6">
+                            <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricName}`}</h3>
+                            <Bar data={prepareChartData(metricValues, metricName)} options={options} />
+                        </div>
+                    ))
+                )
+            }
         </div>
     );
 };

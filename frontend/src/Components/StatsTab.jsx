@@ -15,7 +15,7 @@ const StatsTab = ({ companyData }) => {
                 </div>
             ))}
 
-            <StatsGraphCard companyId={companyData.companyId} />
+            <StatsGraphCard companyId={companyData._id} />
 
         </div>
     );
