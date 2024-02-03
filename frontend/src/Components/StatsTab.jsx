@@ -1,4 +1,5 @@
 import React from 'react';
+import StatsGraphCard from './StatsGraphCard';
 
 const StatsTab = ({ companyData }) => {
     const stats = companyData.ratings;
@@ -13,6 +14,9 @@ const StatsTab = ({ companyData }) => {
                     <strong>{metric}</strong>: {value}
                 </div>
             ))}
+
+            <StatsGraphCard companyId={companyData._id} />
+
         </div>
     );
 };
