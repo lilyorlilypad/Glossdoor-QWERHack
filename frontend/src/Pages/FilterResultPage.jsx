@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import CompanyCard from "../Components/CompanyCard";
 
+import { useLocation } from "react-router-dom";
+import { Search } from "lucide-react";
+import "./../styles/FilterResultPage.css";
+import FilterBar from "../Components/FilterBar";
+import SearchBar from "../Components/SearchBar";
+
 const FilterResultPage = () => {
+  const location = useLocation();
+  const { data } = location.state || { data: [] };
+
+  console.log("passedData:", data);
   return (
     <div className="filter-result-page">
-      <header>
-        <h1>This should be the search bar</h1>
-        {/* Other header content */}
-      </header>
+      <header>{/* Other header content */}</header>
+      <div className="searchBar-container">
+        <SearchBar className="result-search" />
+      </div>
+      <FilterBar />
       <section className="company-list">
         {/* Here you can map over your data to create multiple CompanyCard components */}
         <CompanyCard

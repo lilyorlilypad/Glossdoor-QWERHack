@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SearchBar from "./../Components/SearchBar";
 import FilterBar from "./../Components/FilterBar";
+import "./../styles/Home.css";
 
 const Home = () => {
   return (
@@ -20,6 +21,10 @@ const Home = () => {
       <Link to="/AddReviewPage" className="text-blue-500 hover:text-blue-800">
         AddReview Page
       </Link>
+      <div className="logo">
+        <img src="/Glossdoor.png"></img>
+      </div>
+
       <SearchBar />
       <FilterBar />
     </div>
