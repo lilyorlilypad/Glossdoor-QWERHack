@@ -36,4 +36,11 @@ script (requires `mongosh` installed):
 **:warning: The host and port are hard-coded to `localhost` and `4242`
 respectively at the moment.**
 
-TODO.
+
+### Users API
+
+* GET `/users`
+* GET `/users/:userId`
+* POST `/users`
+* PUT `/users/:userId`
+* DELETE `/users/:userId`

@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 
 const { finalErrorHandler } = require("./middleware/errors.middleware");
 const { InvariantError } = require("./utils");
+const UserController = require("./controllers/user.controller");
 
 dotenv.config();
 
@@ -15,7 +16,9 @@ app.use(express.json());
 app.use(cors());
 
 // Register controllers.
-const controllers = [];
+const controllers = [
+  new UserController(),
+];
 for (const controller of controllers) {
   app.use(controller.path, controller.router);
 }
