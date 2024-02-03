@@ -48,6 +48,7 @@ module.exports = class ReviewController extends BaseController {
       upvotes,
       downvotes,
       tags,
+      metrics,
     } = req.body;
 
     const newReview = new Review({
@@ -59,6 +60,7 @@ module.exports = class ReviewController extends BaseController {
       upvotes,
       downvotes,
       tags,
+      metrics,
     });
 
     try {
@@ -80,6 +82,7 @@ module.exports = class ReviewController extends BaseController {
       upvotes,
       downvotes,
       tags,
+      metrics,
     } = req.body;
 
     try {
@@ -94,6 +97,7 @@ module.exports = class ReviewController extends BaseController {
           upvotes,
           downvotes,
           tags,
+          metrics,
           updatedAt: Date.now(),
         },
         { new: true }

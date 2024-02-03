@@ -16,6 +16,7 @@ const apiConfig = {
     create: "/companycatalogs",
     update: (companyId) => `/companycatalogs/${companyId}`,
     delete: (companyId) => `/companycatalogs/${companyId}`,
+    getMetrics: (companyId) => `/companycatalogs/metrics/${companyId}`,
   },
   reviews: {
     getAll: "/reviews",
