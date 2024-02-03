@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import CompanyPage from "./Pages/CompanyPage"; // Adjust the path based on your file structure
 import FilterResultPage from "./Pages/FilterResultPage";
 import SearchBar from "./Components/SearchBar";
+import FilterBar from "./Components/FilterBar";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         </Routes>
       </Router>
       <SearchBar />
+      <FilterBar />
     </>
   );
 };

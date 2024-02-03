@@ -4,11 +4,13 @@
 }
 
 .logo {
-  text-align: center;
+  font-style: normal;
+  margin: auto;
   padding-top: 120px;
   font-size: 72px;
-  font-weight: bold;
-  color: #4285f4; /* Google blue */
+  font-weight: 400;
+  max-width: 460px;
+
   margin-bottom: 50px;
   /* You can add a more detailed gradient or image for the logo if you wish */
 }
