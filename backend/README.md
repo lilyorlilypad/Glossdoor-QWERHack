@@ -53,6 +53,8 @@ respectively at the moment.**
 * POST `/companycatalogs`
 * PUT `/companycatalogs/:companyId`
 * DELETE `/companycatalogs/:companyId`
+* GET `/companycatalogs/metrics/:companyId` Get the metrics of a company from
+  its reviews.
 
 
 ### Reviews API
