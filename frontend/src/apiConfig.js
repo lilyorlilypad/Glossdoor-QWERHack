@@ -38,6 +38,14 @@ const apiConfig = {
     update: (groupId) => `/affinitygroups/${groupId}`,
     delete: (groupId) => `/affinitygroups/${groupId}`,
   },
+  wishlists: {
+    getAll: "/wishlists",
+    getById: (wishlistId) => `/wishlists/${wishlistId}`,
+    create: "/wishlists",
+    update: (wishlistId) => `/wishlists/${wishlistId}`,
+    delete: (wishlistId) => `/wishlists/${wishlistId}`,
+    getByCompanyId: (companyId) => `/wishlists/company/${companyId}`,
+  }
 };
 
 export default apiConfig;
