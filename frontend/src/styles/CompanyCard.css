@@ -1,0 +1,42 @@
+.company-card {
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-title {
+  font-size: 24px;
+  color: #0000ff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.company-image-container {
+  width: 100%; /* Ensure the container takes full width for centering */
+  text-align: center;
+}
+
+.company-image {
+  width: 100px; /* Fixed square size */
+  height: 100px;
+  object-fit: cover; /* Ensure the image covers the square area */
+  margin: 0 auto; /* Center the image */
+  border-radius: 10px;
+}
+
+.company-info {
+  margin-top: 20px;
+}
+
+.company-rating,
+.company-review,
+.company-location,
+.company-industry {
+  text-align: center;
+  margin: 5px 0;
+}
