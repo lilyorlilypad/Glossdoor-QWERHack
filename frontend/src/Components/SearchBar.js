@@ -1,28 +1,42 @@
 import React from "react";
 import { useState } from "react";
+import apiConfig from "../apiConfig";
+import { useNavigate } from "react-router-dom";
 import "./../styles/SearchBar.css"; // Make sure to create this CSS file
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
       search();
     }
   };
 
-  const search = () => {
-    // Call your API with the searchTerm
-    console.log("Searching for:", searchTerm);
-    // Replace the console.log with your actual API call
-    // Example: fetch(`https://api.yourbackend.com/search?q=${searchTerm}`)
+  const search = async () => {
+    let uri = apiConfig.baseUrl + apiConfig.companyCatalogs.getAll;
+    uri += "?companyName=" + encodeURIComponent(searchTerm);
+
+    try {
+      console.log("Searching for:", searchTerm);
+      const response = await fetch(uri);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        navigate("/FilterResultPage", {
+          state: { data },
+        });
+      } else {
+        throw new Error("Search failed");
+      }
+    } catch (error) {
+      console.error("Error during search:", error);
+    }
   };
 
   return (
     <>
-      <div className="logo">
-        <img src="/Glossdoor.png"></img>
-      </div>
       <div className="search-container">
         <input
           type="text"
