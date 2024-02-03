@@ -48,8 +48,35 @@ respectively at the moment.**
 
 ### Company Catalogs API
 
-* GET `companycatalogs`
-* GET `companycatalogs/:companyId`
-* POST `companycatalogs`
-* PUT `companycatalogs/:companyId`
-* DELETE `companycatalogs/:companyId`
+* GET `/companycatalogs`
+* GET `/companycatalogs/:companyId`
+* POST `/companycatalogs`
+* PUT `/companycatalogs/:companyId`
+* DELETE `/companycatalogs/:companyId`
+
+
+### Reviews API
+
+* GET `/reviews`
+* GET `/reviews/:reviewId`
+* POST `/reviews`
+* PUT `/reviews/:reviewId`
+* DELETE `/reviews/:reviewId`
+
+
+### Comments API
+
+* GET `/comments`
+* GET `/comments/:commentId`
+* POST `/comments`
+* PUT `/comments/:commentId`
+* DELETE `/comments/:commentId`
+
+
+### Affinity Groups API
+
+* GET `/affinitygroups`
+* GET `/affinitygroups/:groupId`
+* POST `/affinitygroups`
+* PUT `/affinitygroups/:groupId`
+* DELETE `/affinitygroups/:groupId`
