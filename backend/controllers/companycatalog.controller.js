@@ -1,6 +1,5 @@
 const BaseController = require("./base.controller");
 const CompanyCatalog = require("../models/CompanyCatalog.model");
-const Review = require("../models/Review.model");
 const { getMetricsByCompanyId } = require("../services/metrics.service");
 
 module.exports = class CompanyCatalogController extends BaseController {
@@ -18,8 +17,15 @@ module.exports = class CompanyCatalogController extends BaseController {
   }
 
   async getAllCompanyCatalogs(req, res) {
+    const { companyName } = req.query;
+    let query = {};
+    if (companyName) {
+      // Case-insensitive exact match for company name
+      query = { companyName: { $regex: new RegExp(`^${companyName}$`, "i") } };
+    }
+
     try {
-      const companyCatalogs = await CompanyCatalog.find();
+      const companyCatalogs = await CompanyCatalog.find(query);
       res.json(companyCatalogs);
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
