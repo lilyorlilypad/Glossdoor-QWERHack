@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import DEITab from "../Components/DEITab";
 import ReviewsTab from "../Components/ReviewsTab";
 import StatsTab from "../Components/StatsTab";
+import WishlistTab from "../Components/WishlistTab";
 import apiConfig from "../apiConfig";
-import axios from 'axios';
 
 const mockCompanyData = {
     _id: "1",
@@ -61,14 +61,17 @@ const CompanyPage = ({ match }) => {
                 <p>{companyData?.companyDescription}</p>
             </div>
             <div className="tabs">
-                <button className={`tab ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
-                <button className={`tab ${activeTab === 'dei' ? 'active' : ''}`} onClick={() => setActiveTab('dei')}>DEI</button>
-                <button className={`tab ${activeTab === 'stats' ? 'active' : ''}`} onClick={() => setActiveTab('stats')}>Stats</button>
+                <button className={`tab ${activeTab === 'reviews' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
+                <button className={`tab ${activeTab === 'dei' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('dei')}>DEI</button>
+                <button className={`tab ${activeTab === 'stats' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('stats')}>Stats</button>
+                <button className={`tab ${activeTab === 'wishlist'? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('wishlist')}>Wishlist</button>
+
             </div>
             <div className="tab-content">
                 {activeTab === 'reviews' && <ReviewsTab companyData={companyData} />}
                 {activeTab === 'dei' && <DEITab companyData={companyData} />}
                 {activeTab === 'stats' && <StatsTab companyData={companyData}/>}
+                {activeTab === 'wishlist' && <WishlistTab companyId={companyData._id}/>}
             </div>
         </div>
     );
