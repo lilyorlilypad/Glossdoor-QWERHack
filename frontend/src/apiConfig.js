@@ -31,6 +31,7 @@ const apiConfig = {
     create: "/comments",
     update: (commentId) => `/comments/${commentId}`,
     delete: (commentId) => `/comments/${commentId}`,
+    getByUserId: (userId) => `/comments/user/${userId}`,
   },
   affinityGroups: {
     getAll: "/affinitygroups",

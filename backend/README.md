@@ -62,7 +62,7 @@ respectively at the moment.**
 * POST `/reviews`
 * PUT `/reviews/:reviewId`
 * DELETE `/reviews/:reviewId`
-* GET `/reviews/company/:companyId`
+* GET `/reviews/company/:companyId` Get all reviews associated with a company.
 
 
 ### Comments API
@@ -72,6 +72,7 @@ respectively at the moment.**
 * POST `/comments`
 * PUT `/comments/:commentId`
 * DELETE `/comments/:commentId`
+* GET `/comments/user/:userId` Get all comments created by a user.
 
 
 ### Affinity Groups API
