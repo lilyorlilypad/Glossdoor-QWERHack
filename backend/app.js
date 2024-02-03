@@ -8,6 +8,7 @@ const { InvariantError } = require("./utils");
 const UserController = require("./controllers/user.controller");
 const CompanyCatalogController = require("./controllers/companycatalog.controller");
 const ReviewController = require("./controllers/review.controller");
+const CommentController = require("./controllers/comment.controller");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ const controllers = [
   new UserController(),
   new CompanyCatalogController(),
   new ReviewController(),
+  new CommentController(),
 ];
 for (const controller of controllers) {
   app.use(controller.path, controller.router);

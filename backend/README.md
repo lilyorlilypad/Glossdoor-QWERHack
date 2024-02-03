@@ -62,3 +62,12 @@ respectively at the moment.**
 * POST `/reviews`
 * PUT `/reviews/:reviewId`
 * DELETE `/reviews/:reviewId`
+
+
+### Comments API
+
+* GET `/comments`
+* GET `/comments/:commentId`
+* POST `/comments`
+* PUT `/comments/:commentId`
+* DELETE `/comments/:commentId`
