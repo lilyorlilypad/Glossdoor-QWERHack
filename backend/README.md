@@ -71,3 +71,12 @@ respectively at the moment.**
 * POST `/comments`
 * PUT `/comments/:commentId`
 * DELETE `/comments/:commentId`
+
+
+### Affinity Groups API
+
+* GET `/affinitygroups`
+* GET `/affinitygroups/:groupId`
+* POST `/affinitygroups`
+* PUT `/affinitygroups/:groupId`
+* DELETE `/affinitygroups/:groupId`
