@@ -7,34 +7,47 @@ import ReviewCard from "./ReviewCard";
 
 
 const ReviewsTab = ({ companyData }) => {
-    const reviewIds = companyData.reviews; // Assuming 'reviews' is part of companyData
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchReviews = async () => {
-            setLoading(true);
-            const fetchedReviews = await Promise.all(reviewIds.map(async (id) => {
-                const url = apiConfig.baseUrl + apiConfig.reviews.getById(id)
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            }));
+            try {
+                setLoading(true);
+                const apiGetReviewsByCompanyIdUrl = apiConfig.baseUrl + apiConfig.reviews.getByCompanyId(companyData._id);
+                fetch(apiGetReviewsByCompanyIdUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            // If the server responds with a 404, use mock data
+                            if (response.status === 404) {
+                                throw new Error('Company catalog not found, using mock data');
+                            }
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setReviews(data);
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        // Set to mock data in case of error or if no data found
+                        setReviews([]); // Ensure mockCompanyData is defined
+                    });
+                // console.log(apiGetWishlistByCompanyIdUrl)
+                // console.log(wishlistItems)
+            } catch (error) {
+                // setWishlistItems([mockWishlistItems])
+                console.error("Error fetching wishlist items:", error);
 
-            setReviews(fetchedReviews);
-            setLoading(false);
-        };
-
-        if (reviewIds && reviewIds.length > 0) {
-            fetchReviews().catch(error => console.error("Failed to fetch reviews:", error));
-        } else {
-            setLoading(false); // No review IDs to fetch
+            } finally {
+                setLoading(false);
+            }
         }
-    }, [reviewIds]);
+        fetchReviews();
 
-    console.log(companyData)
+    }, []);
+
     console.log(reviews)
 
     if (loading) {
@@ -55,5 +68,4 @@ const ReviewsTab = ({ companyData }) => {
         </div>
     );
 };
-
 export default ReviewsTab;

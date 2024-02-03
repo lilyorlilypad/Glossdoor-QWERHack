@@ -29,8 +29,8 @@ const ReviewCard = ({ review }) => {
             <p className="text-sm text-gray-500 mb-2">Reviewed by {username} on {new Date(review.createdAt).toLocaleDateString()}</p>
             <p>{review.content}</p>
             <div className="flex justify-between items-center mt-4">
-                <button className="mr-2">👍 {review.upvotes}</button>
-                <button>👎 {review.downvotes}</button>
+                <button className="mr-2">👍 {Math.round(review.upvotes)}</button>
+                <button>👎 {Math.round(review.downvotes)}</button>
             </div>
         </div>
     );
