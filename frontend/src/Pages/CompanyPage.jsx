@@ -13,7 +13,7 @@ const mockCompanyData = {
     logo: "https://via.placeholder.com/150",
     companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
     deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
-    stats: {
+    ratings: {
         metricA: 238,
         metricB: 90,
         metricC: -123
