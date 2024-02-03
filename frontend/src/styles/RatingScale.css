@@ -1,0 +1,115 @@
+.ratings-container {
+  font-family: "Arial", sans-serif;
+  width: 100%;
+  max-width: 70%;
+  margin: 80px auto;
+  padding: 40px 60px 60px 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+span {
+  margin: auto;
+  text-align: center;
+}
+
+h2 {
+  text-align: left;
+  font-weight: normal;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.rating-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: left;
+  gap: 10px;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 30px;
+}
+
+.main-label {
+  font-weight: bold;
+  margin-bottom: 4px; /* Spacing between the main label and sublabel */
+}
+
+.sub-label {
+  font-size: 0.9rem; /* Smaller font size for the sublabel */
+  color: #666; /* Lighter text color for sublabel */
+  width: 230px;
+}
+
+/* ... other styles ... */
+
+.rating-item main-label {
+  text-align: left;
+  padding-right: 10px;
+  font-size: 1rem;
+  color: #333;
+  padding-top: 30px;
+  width: 170px;
+}
+
+.rating-item input[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.rating-item input[type="range"] {
+  position: left;
+  padding-right: 70px;
+}
+
+.rating-item input[type="range"] {
+  padding-top: 30px;
+}
+/* Track */
+.rating-item input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+}
+
+.rating-item input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+}
+
+.rating-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background: #3578e5;
+  /* Center the thumb vertically */
+  margin-top: -5.5px; /* Half of the height of the track */
+}
+
+.rating-item input[type="range"]::-moz-range-thumb {
+  /* Same styles for Firefox */
+  margin-top: -5.5px; /* Adjust if necessary for Firefox */
+  background: #3578e5;
+}
+
+/* Labels */
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px 0px 150px;
+  font-size: 1rem;
+  color: #333;
+}

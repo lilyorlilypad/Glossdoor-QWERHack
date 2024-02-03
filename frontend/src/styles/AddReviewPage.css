@@ -1,0 +1,54 @@
+.container {
+  font-family: "Arial", sans-serif;
+  width: 100%;
+  max-width: 70%;
+  margin: 80px auto;
+  padding: 40px 60px 60px 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+h2 {
+  text-align: left;
+  font-weight: normal;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+textarea {
+  margin: auto;
+  padding-left: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #4285f4; /* Blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 10px 40px 10px 40px; /* Top and bottom padding, Left and right padding */
+  font-size: 16px; /* Text size */
+  font-weight: bold; /* Bold text */
+  border-radius: 20px; /* Fully rounded corners for pill shape */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  cursor: pointer; /* Cursor indicates clickable */
+  outline: none; /* Removes the outline */
+  transition: all 0.3s; /* Transition for interactive effects */
+  margin-bottom: 200px;
+}
+
+button:hover {
+  background-color: #3578e5; /* Slightly darker blue on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+button:active {
+  background-color: #2a65cc; /* Even darker blue when the button is clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow when clicked */
+}

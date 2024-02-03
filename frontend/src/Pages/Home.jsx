@@ -17,6 +17,9 @@ const Home = () => {
       >
         FilterResult Page
       </Link>
+      <Link to="/AddReviewPage" className="text-blue-500 hover:text-blue-800">
+        AddReview Page
+      </Link>
       <SearchBar />
       <FilterBar />
     </div>
