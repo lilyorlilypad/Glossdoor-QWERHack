@@ -10,6 +10,7 @@ const CompanyCatalogController = require("./controllers/companycatalog.controlle
 const ReviewController = require("./controllers/review.controller");
 const CommentController = require("./controllers/comment.controller");
 const AffinityGroupController = require("./controllers/affinitygroup.controller");
+const WishlistController = require("./controllers/wishlist.controller");
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ const controllers = [
   new ReviewController(),
   new CommentController(),
   new AffinityGroupController(),
+  new WishlistController(),
 ];
 for (const controller of controllers) {
   app.use(controller.path, controller.router);
