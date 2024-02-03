@@ -1,28 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function App() {
+import Home from'./Pages/Home';
+import CompanyPage from './Pages/CompanyPage'; // Adjust the path based on your file structure
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1 class="text-3xl font-bold underline">
-          Tailwind configured
-        </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/company" element={<CompanyPage />} />
+              {/* other routes */}
+          </Routes>
+      </Router>
   );
-}
+};
 
 export default App;
