@@ -44,3 +44,12 @@ respectively at the moment.**
 * POST `/users`
 * PUT `/users/:userId`
 * DELETE `/users/:userId`
+
+
+### Company Catalogs API
+
+* GET `companycatalogs`
+* GET `companycatalogs/:companyId`
+* POST `companycatalogs`
+* PUT `companycatalogs/:companyId`
+* DELETE `companycatalogs/:companyId`

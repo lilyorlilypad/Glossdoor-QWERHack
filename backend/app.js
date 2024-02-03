@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const { finalErrorHandler } = require("./middleware/errors.middleware");
 const { InvariantError } = require("./utils");
 const UserController = require("./controllers/user.controller");
+const CompanyCatalogController = require("./controllers/companycatalog.controller");
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 // Register controllers.
 const controllers = [
   new UserController(),
+  new CompanyCatalogController(),
 ];
 for (const controller of controllers) {
   app.use(controller.path, controller.router);
