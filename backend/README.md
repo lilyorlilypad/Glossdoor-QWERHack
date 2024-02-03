@@ -80,3 +80,12 @@ respectively at the moment.**
 * POST `/affinitygroups`
 * PUT `/affinitygroups/:groupId`
 * DELETE `/affinitygroups/:groupId`
+
+
+### Wishlist API
+
+* GET `/wishlists`
+* GET `/wishlists/:wishlistId`
+* POST `/wishlists`
+* PUT `/wishlists/:wishlistId`
+* DELETE `/wishlists/:wishlistId`
