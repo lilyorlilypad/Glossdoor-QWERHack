@@ -62,10 +62,10 @@ const CompanyPage = ({ match }) => {
                 <p>{companyData?.companyDescription}</p>
             </div>
             <div className="tabs">
-                <button className={`tab ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
-                <button className={`tab ${activeTab === 'dei' ? 'active' : ''}`} onClick={() => setActiveTab('dei')}>DEI</button>
-                <button className={`tab ${activeTab === 'stats' ? 'active' : ''}`} onClick={() => setActiveTab('stats')}>Stats</button>
-                <button className={`tab ${activeTab === 'wishlist' ? 'active' : ''}`} onClick={() => setActiveTab('wishlist')}>Wishlist</button>
+                <button className={`tab ${activeTab === 'reviews' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
+                <button className={`tab ${activeTab === 'dei' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('dei')}>DEI</button>
+                <button className={`tab ${activeTab === 'stats' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('stats')}>Stats</button>
+                <button className={`tab ${activeTab === 'wishlist'? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`} onClick={() => setActiveTab('wishlist')}>Wishlist</button>
 
             </div>
             <div className="tab-content">
