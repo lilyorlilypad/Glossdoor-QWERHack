@@ -12,7 +12,7 @@ const reviewSchema = new Schema({
   tags: [String],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  metrics: {
+  score: {
     metricA: Number,
     metricB: Number,
     metricC: Number,
