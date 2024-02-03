@@ -20,8 +20,8 @@ module.exports = class CompanyCatalogController extends BaseController {
     const { companyName } = req.query;
     let query = {};
     if (companyName) {
-      // Case-insensitive exact match for company name
-      query = { companyName: { $regex: new RegExp(`^${companyName}$`, "i") } };
+      // Case-insensitive match of string anywhere in company name.
+      query = { companyName: { $regex: new RegExp(companyName, "i") } };
     }
 
     try {
