@@ -53,3 +53,12 @@ respectively at the moment.**
 * POST `companycatalogs`
 * PUT `companycatalogs/:companyId`
 * DELETE `companycatalogs/:companyId`
+
+
+### Reviews API
+
+* GET `/reviews`
+* GET `/reviews/:reviewId`
+* POST `/reviews`
+* PUT `/reviews/:reviewId`
+* DELETE `/reviews/:reviewId`
