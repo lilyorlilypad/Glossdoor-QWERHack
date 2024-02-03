@@ -45,6 +45,10 @@ module.exports = class CompanyCatalogController extends BaseController {
       deiEfforts,
       affinityGroups,
       ratings,
+      reviews,
+      numberOfReviews,
+      industry,
+      location,
     } = req.body;
 
     const newCompanyCatalog = new CompanyCatalog({
@@ -54,6 +58,10 @@ module.exports = class CompanyCatalogController extends BaseController {
       deiEfforts,
       affinityGroups,
       ratings,
+      reviews,
+      numberOfReviews,
+      industry,
+      location,
     });
 
     try {
@@ -73,6 +81,10 @@ module.exports = class CompanyCatalogController extends BaseController {
       deiEfforts,
       affinityGroups,
       ratings,
+      reviews,
+      numberOfReviews,
+      industry,
+      location,
     } = req.body;
 
     try {
@@ -85,6 +97,10 @@ module.exports = class CompanyCatalogController extends BaseController {
           deiEfforts,
           affinityGroups,
           ratings,
+          reviews,
+          numberOfReviews,
+          industry,
+          location,
           updatedAt: Date.now(),
         },
         { new: true }
