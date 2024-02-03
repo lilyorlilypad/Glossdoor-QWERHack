@@ -24,7 +24,7 @@ const AddReviewPage = () => {
         ></textarea>
       </div>
       <div className="button-container">
-        <button>submit</button>
+        <button className="submit-button">submit</button>
       </div>
     </>
   );

@@ -9,7 +9,7 @@
   background: #fff;
 }
 
-h2 {
+.h2 {
   text-align: left;
   font-weight: normal;
   color: #333;
@@ -28,7 +28,7 @@ textarea {
   justify-content: center;
 }
 
-button {
+.submit-button {
   background-color: #4285f4; /* Blue background */
   color: white; /* White text */
   border: none; /* No border */
@@ -43,12 +43,12 @@ button {
   margin-bottom: 200px;
 }
 
-button:hover {
+.submit-button:hover {
   background-color: #3578e5; /* Slightly darker blue on hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
 }
 
-button:active {
+.submit-button:active {
   background-color: #2a65cc; /* Even darker blue when the button is clicked */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow when clicked */
 }
