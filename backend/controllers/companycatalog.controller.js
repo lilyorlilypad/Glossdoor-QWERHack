@@ -1,5 +1,7 @@
 const BaseController = require("./base.controller");
 const CompanyCatalog = require("../models/CompanyCatalog.model");
+const Review = require("../models/Review.model");
+const { getMetricsByCompanyId } = require("../services/metrics.service");
 
 module.exports = class CompanyCatalogController extends BaseController {
   constructor() {
@@ -12,6 +14,7 @@ module.exports = class CompanyCatalogController extends BaseController {
     this.router.post("/", this.createCompanyCatalog.bind(this));
     this.router.put("/:companyId", this.updateCompanyCatalog.bind(this));
     this.router.delete("/:companyId", this.deleteCompanyCatalog.bind(this));
+    this.router.get("/metrics/:companyId", this.getMetrics.bind(this));
   }
 
   async getAllCompanyCatalogs(req, res) {
@@ -129,6 +132,17 @@ module.exports = class CompanyCatalogController extends BaseController {
       }
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
+  async getMetrics(req, res) {
+    const { companyId } = req.params;
+    const metrics = await getMetricsByCompanyId(companyId);
+    if (!metrics) {
+      // TODO: what if the company just doesn't exist?
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.status(200).json(metrics);
     }
   }
 }

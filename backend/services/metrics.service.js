@@ -1,36 +1,30 @@
+const Review = require("../models/Review.model");
+
+/**
+ * Get all the metric values for a company.
+ *
+ * @param {string} companyId ID of company to get metrics for.
+ * @returns Object of metrics mapped to array of values for that metric
+ * retrieved from all reviews for that company. null if retrieving reviews
+ * failed (database error).
+ */
 async function getMetricsByCompanyId(companyId) {
-  // TODO.
+  let reviews;
+  try {
+    reviews = await Review.find({ companyId });
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+
+  const scores = reviews.map(review => review.score);
+  const nonNullish = (value) => value != null;
   return {
-    metricA: [
-      0.932370214396123,
-      0.7196357027398476,
-      0.3547386629270902,
-      0.5564023988929624,
-    ],
-    metricB: [
-      0.7253117037414875,
-      0.16290532651047927,
-      0.874291009874431,
-      0.44617439816451535,
-    ],
-    metricC: [
-      0.9186439030958227,
-      0.5239616895446774,
-      0.29771982150105136,
-      0.7352756064865925,
-    ],
-    metricD: [
-      0.6410987025800947,
-      0.18316207111225756,
-      0.8992818178832603,
-      0.4800402139396924,
-    ],
-    metricE: [
-      0.7599885341458096,
-      0.0645922198943785,
-      0.38485709453626014,
-      0.2617769474764479,
-    ]
+    metricA: scores?.map(score => score?.metricA).filter(nonNullish) ?? [],
+    metricB: scores?.map(score => score?.metricB).filter(nonNullish) ?? [],
+    metricC: scores?.map(score => score?.metricC).filter(nonNullish) ?? [],
+    metricD: scores?.map(score => score?.metricD).filter(nonNullish) ?? [],
+    metricE: scores?.map(score => score?.metricE).filter(nonNullish) ?? [],
   };
 }
 
