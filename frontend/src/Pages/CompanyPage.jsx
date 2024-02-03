@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const mockCompanyData = {
+    _id: "1",
+    companyName: "Example Company",
+    logo: "https://via.placeholder.com/150",
+    companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
+    deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
+    // Add more fields as needed for reviews, stats, etc.
+};
+
+
 const CompanyPage = ({ match }) => {
-    const [company, setCompany] = useState(null);
+    const [company, setCompany] = useState(mockCompanyData);
     const [activeTab, setActiveTab] = useState('reviews');
 
-    useEffect(() => {
-        const fetchCompany = async () => {
-            const response = await axios.get(`/api/companies/${match.params.id}`);
-            setCompany(response.data);
-        };
-        fetchCompany();
-    }, [match.params.id]);
+    // useEffect(() => {
+    //     const fetchCompany = async () => {
+    //         const response = await axios.get(`/api/companies/${match.params.id}`);
+    //         setCompany(response.data);
+    //     };
+    //     fetchCompany();
+    // }, [match.params.id]);
 
     return (
         <div className="container mx-auto p-4">
             <div className="text-center">
-                <h1 className="text-3xl font-bold">{company?.name}</h1>
+                <h1 className="text-3xl font-bold">{company?.companyName}</h1>
                 <img src={company?.logo} alt="logo" className="mx-auto" />
-                <p>{company?.description}</p>
+                <p>{company?.companyDescription}</p>
             </div>
             <div className="tabs">
                 <button className={`tab ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
