@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import DEITab from "../Components/DEITab";
 import ReviewsTab from "../Components/ReviewsTab";
 import StatsTab from "../Components/StatsTab";
+import WishlistTab from "../Components/WishlistTab";
 import apiConfig from "../apiConfig";
 import axios from 'axios';
 
@@ -64,11 +65,14 @@ const CompanyPage = ({ match }) => {
                 <button className={`tab ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Reviews</button>
                 <button className={`tab ${activeTab === 'dei' ? 'active' : ''}`} onClick={() => setActiveTab('dei')}>DEI</button>
                 <button className={`tab ${activeTab === 'stats' ? 'active' : ''}`} onClick={() => setActiveTab('stats')}>Stats</button>
+                <button className={`tab ${activeTab === 'wishlist' ? 'active' : ''}`} onClick={() => setActiveTab('wishlist')}>Wishlist</button>
+
             </div>
             <div className="tab-content">
                 {activeTab === 'reviews' && <ReviewsTab companyData={companyData} />}
                 {activeTab === 'dei' && <DEITab companyData={companyData} />}
                 {activeTab === 'stats' && <StatsTab companyData={companyData}/>}
+                {activeTab === 'wishlist' && <WishlistTab companyId={companyData._id}/>}
             </div>
         </div>
     );
