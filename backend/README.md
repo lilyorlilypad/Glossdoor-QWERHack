@@ -84,6 +84,8 @@ respectively at the moment.**
 * POST `/affinitygroups`
 * PUT `/affinitygroups/:groupId`
 * DELETE `/affinitygroups/:groupId`
+* GET `/affinitygroups/company/:companyId` Get all affinity groups in the
+  company.
 
 
 ### Wishlist API

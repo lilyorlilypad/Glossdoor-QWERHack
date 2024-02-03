@@ -12,6 +12,7 @@ module.exports = class AffinityGroupController extends BaseController {
     this.router.post("/", this.createAffinityGroup.bind(this));
     this.router.put("/:groupId", this.updateAffinityGroup.bind(this));
     this.router.delete("/:groupId", this.deleteAffinityGroup.bind(this));
+    this.router.get("/company/:companyId", this.getAffinityGroupsByCompanyId.bind(this));
   }
 
   async getAllAffinityGroups(req, res) {
@@ -94,6 +95,17 @@ module.exports = class AffinityGroupController extends BaseController {
         res.status(404).json({ error: "Affinity group not found" });
       }
     } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
+  async getAffinityGroupsByCompanyId(req, res) {
+    const { companyId } = req.params;
+    try {
+      const groups = await AffinityGroup.find({ companyId });
+      res.status(200).json(groups);
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ error: "Internal server error" });
     }
   }
