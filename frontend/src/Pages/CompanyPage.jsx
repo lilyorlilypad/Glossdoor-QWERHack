@@ -13,11 +13,12 @@ const mockCompanyData = {
     logo: "https://via.placeholder.com/150",
     companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
     deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
-    stats: {
+    ratings: {
         metricA: 238,
         metricB: 90,
         metricC: -123
-    }
+    },
+    reviews:[]
     // Add more fields as needed for reviews, stats, etc.
 };
 
@@ -28,10 +29,9 @@ const CompanyPage = ({ match }) => {
     const [activeTab, setActiveTab] = useState('reviews');
 
     useEffect(() => {
-        console.log(companyId)
         // Assuming your backend is running on localhost:3000, adjust the URL as needed
-        const apiUrl = apiConfig.companyCatalogs.getById(companyId)
-
+        const apiUrl = apiConfig.baseUrl + apiConfig.companyCatalogs.getById(companyId)
+        console.log(apiUrl)
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StatsTab = ({ companyData }) => {
-    const stats = companyData.stats; // Assuming 'stats' is part of companyData
+    const stats = companyData.ratings;
     const statsArray = Object.entries(stats);
 
     return (

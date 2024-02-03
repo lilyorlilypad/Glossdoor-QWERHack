@@ -8,14 +8,16 @@ import FilterResultPage from "./Pages/FilterResultPage";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/company/:companyId" element={<CompanyPage />} />
-        <Route path="/FilterResultPage" element={<FilterResultPage />} />
-        {/* other routes */}
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/company/:companyId" element={<CompanyPage />} />
+          <Route path="/FilterResultPage" element={<FilterResultPage />} />
+          {/* other routes */}
+        </Routes>
+      </Router>
+    </>
   );
 };
 
