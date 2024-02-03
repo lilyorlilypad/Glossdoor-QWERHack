@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Home from "./Pages/Home";
 import CompanyPage from "./Pages/CompanyPage"; // Adjust the path based on your file structure
 import FilterResultPage from "./Pages/FilterResultPage";
-
+import AddReviewPage from "./Pages/AddReviewPage";
 const App = () => {
   return (
     <>
@@ -14,6 +14,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/company/:companyId" element={<CompanyPage />} />
           <Route path="/FilterResultPage" element={<FilterResultPage />} />
+          <Route path="/AddReviewPage" element={<AddReviewPage />} />
           {/* other routes */}
         </Routes>
       </Router>
