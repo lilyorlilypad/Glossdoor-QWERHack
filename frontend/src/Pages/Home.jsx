@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
+import SearchBar from "./../Components/SearchBar";
+import FilterBar from "./../Components/FilterBar";
 
 const Home = () => {
   return (
@@ -15,6 +17,8 @@ const Home = () => {
       >
         FilterResult Page
       </Link>
+      <SearchBar />
+      <FilterBar />
     </div>
   );
 };
