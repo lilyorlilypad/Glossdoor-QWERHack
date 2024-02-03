@@ -6,7 +6,6 @@ import ReviewsTab from "../Components/ReviewsTab";
 import StatsTab from "../Components/StatsTab";
 import WishlistTab from "../Components/WishlistTab";
 import apiConfig from "../apiConfig";
-import axios from 'axios';
 
 const mockCompanyData = {
     _id: "1",
