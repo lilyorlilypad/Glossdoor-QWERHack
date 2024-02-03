@@ -49,8 +49,8 @@ respectively at the moment.**
 ### Company Catalogs API
 
 * GET `/companycatalogs`
-  * Optional query parameter `companyName` to filter by companies whose name are
-    an *exact* (case-insensitive) match e.g.
+  * Optional query parameter `companyName` to filter by companies whose name
+    *contain* (case-insensitive) the value e.g.
     `/companycatalogs?companyName=GreenTech%20Solutions`.
 * GET `/companycatalogs/:companyId`
 * POST `/companycatalogs`

@@ -19,13 +19,15 @@ class StorageService {
    * Upload a file to Firebase Storage.
    *
    * @param {Blob | Uint8Array | ArrayBuffer} data Bytes to upload.
-   * @param {string} userId ID of user to upload file on behalf of.
-   * @param {string} name Name of file to use within user's storage directory.
+   * @param {"user" | "company"} type Type of ID to upload on behalf of.
+   * @param {string} id ID of user to upload file on behalf of.
+   * @param {string} name Name of file to use within the storage directory.
    * @returns {Promise<string | null>} Download URL of uploaded file, or null if
    * upload failed.
    */
-  async uploadFile(data, userId, name) {
-    const path = `${userId}/${name}`;
+  async uploadFile(data, type, id, name) {
+    const topLevelDirectory = this._getTopLevelDirectory(type);
+    const path = `${topLevelDirectory}/${id}/${name}`;
     const storageRef = ref(this.storage, path);
     let result;
     try {
@@ -40,15 +42,31 @@ class StorageService {
   /**
    * Get the download URL for a file in Firebase Storage.
    *
-   * @param {string} userId ID of user the file belongs to.
+   * @param {"user" | "company"} type Type of ID to retrieve file from.
+   * @param {string} id ID of entity the file belongs to.
    * @param {string} name Name of file within user's storage directory.
    * @returns {Promise<string | null>} Download URL of requested file, or null
    * if the file does not exist.
    */
-  async getURL(userId, name) {
-    const path = `${userId}/${name}`;
+  async getURL(type, id, name) {
+    const topLevelDirectory = this._getTopLevelDirectory(type);
+    const path = `${topLevelDirectory}/${id}/${name}`;
     const storageRef = ref(this.storage, path);
     return await this._getURLFromRef(storageRef);
+  }
+
+  /**
+   * @private
+   */
+  _getTopLevelDirectory(type) {
+    switch (type) {
+      case "company":
+        return "companies";
+      case "user":
+        return "users";
+      default:
+        throw new Error(`invalid uploadFile type=${type}`);
+    }
   }
 
   /**
