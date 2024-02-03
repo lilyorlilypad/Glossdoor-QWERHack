@@ -53,3 +53,30 @@ respectively at the moment.**
 * POST `companycatalogs`
 * PUT `companycatalogs/:companyId`
 * DELETE `companycatalogs/:companyId`
+
+
+### Reviews API
+
+* GET `/reviews`
+* GET `/reviews/:reviewId`
+* POST `/reviews`
+* PUT `/reviews/:reviewId`
+* DELETE `/reviews/:reviewId`
+
+
+### Comments API
+
+* GET `/comments`
+* GET `/comments/:commentId`
+* POST `/comments`
+* PUT `/comments/:commentId`
+* DELETE `/comments/:commentId`
+
+
+### Affinity Groups API
+
+* GET `/affinitygroups`
+* GET `/affinitygroups/:groupId`
+* POST `/affinitygroups`
+* PUT `/affinitygroups/:groupId`
+* DELETE `/affinitygroups/:groupId`
