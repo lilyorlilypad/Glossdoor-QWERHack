@@ -19,13 +19,29 @@ const WishlistTab = ({ companyId }) => {
             try {
                 setLoading(true);
                 const apiGetWishlistByCompanyIdUrl = apiConfig.baseUrl + apiConfig.wishlists.getByCompanyId(companyId);
-                const response = await fetch(apiGetWishlistByCompanyIdUrl); // Assume this function is implemented and fetches the data
-                const wishlist = await response.json();
-                console.log(apiGetWishlistByCompanyIdUrl)
-                console.log(wishlist)
-                setWishlistItems(wishlist);
+                fetch(apiGetWishlistByCompanyIdUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            // If the server responds with a 404, use mock data
+                            if (response.status === 404) {
+                                throw new Error('Company catalog not found, using mock data');
+                            }
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setWishlistItems(data);
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        // Set to mock data in case of error or if no data found
+                        setWishlistItems([]); // Ensure mockCompanyData is defined
+                    });
+                // console.log(apiGetWishlistByCompanyIdUrl)
+                // console.log(wishlistItems)
             } catch (error) {
-                const wishlist = [mockWishlistItems]
+                // setWishlistItems([mockWishlistItems])
                 console.error("Error fetching wishlist items:", error);
 
             } finally {
