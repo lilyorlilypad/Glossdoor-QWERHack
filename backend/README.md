@@ -62,6 +62,7 @@ respectively at the moment.**
 * POST `/reviews`
 * PUT `/reviews/:reviewId`
 * DELETE `/reviews/:reviewId`
+* GET `/reviews/company/:companyId`
 
 
 ### Comments API

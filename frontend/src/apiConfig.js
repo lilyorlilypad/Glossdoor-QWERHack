@@ -23,6 +23,7 @@ const apiConfig = {
     create: "/reviews",
     update: (reviewId) => `/reviews/${reviewId}`,
     delete: (reviewId) => `/reviews/${reviewId}`,
+    getByCompanyId: (companyId) => `/reviews/company/${companyId}`,
   },
   comments: {
     getAll: "/comments",

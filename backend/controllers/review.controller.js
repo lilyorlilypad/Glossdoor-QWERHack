@@ -12,6 +12,7 @@ module.exports = class ReviewController extends BaseController {
     this.router.post("/", this.createReview.bind(this));
     this.router.put("/:reviewId", this.updateReview.bind(this));
     this.router.delete("/:reviewId", this.deleteReview.bind(this));
+    this.router.get("/company/:companyId", this.getReviewsByCompanyId.bind(this));
   }
 
   async getAllReviews(req, res) {
@@ -121,6 +122,17 @@ module.exports = class ReviewController extends BaseController {
       }
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
+  async getReviewsByCompanyId(req, res) {
+    const { companyId } = req.params;
+    try {
+      const records = await Review.find({ companyId });
+      res.status(200).json(records);
+    } catch (error) {
+      console.error("Error getting records by Company ID:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }
