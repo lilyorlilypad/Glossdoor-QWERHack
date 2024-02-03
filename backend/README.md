@@ -89,3 +89,5 @@ respectively at the moment.**
 * POST `/wishlists`
 * PUT `/wishlists/:wishlistId`
 * DELETE `/wishlists/:wishlistId`
+* GET `/wishlists/company/:companyId` Get all wishlists associated with a
+  company.

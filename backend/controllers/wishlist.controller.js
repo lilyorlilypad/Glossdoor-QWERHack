@@ -12,6 +12,7 @@ module.exports = class WishlistController extends BaseController {
     this.router.post("/", this.createWishlist.bind(this));
     this.router.put("/:wishlistId", this.updateWishlist.bind(this));
     this.router.delete("/:wishlistId", this.deleteWishlist.bind(this));
+    this.router.get("/company/:companyId", this.getWishlistsByCompanyId.bind(this));
   }
 
   async getAllWishlists(req, res) {
@@ -77,6 +78,17 @@ module.exports = class WishlistController extends BaseController {
       res.status(204).end();
     } catch (error) {
       console.error("Error deleting record:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getWishlistsByCompanyId(req, res) {
+    const { companyId } = req.params;
+    try {
+      const records = await Wishlist.find({ companyId });
+      res.status(200).json(records);
+    } catch (error) {
+      console.error("Error getting records by Company ID:", error.message);
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
