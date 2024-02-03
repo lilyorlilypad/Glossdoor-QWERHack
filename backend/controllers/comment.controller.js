@@ -12,6 +12,7 @@ module.exports = class CommentController extends BaseController {
     this.router.post("/", this.createComment.bind(this));
     this.router.put("/:commentId", this.updateComment.bind(this));
     this.router.delete("/:commentId", this.deleteComment.bind(this));
+    this.router.get("/user/:userId", this.getCommentsByUserId.bind(this));
   }
 
   async getAllComments(req, res) {
@@ -93,6 +94,17 @@ module.exports = class CommentController extends BaseController {
       }
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
+  async getCommentsByUserId(req, res) {
+    const { userId } = req.params;
+    try {
+      const records = await Comment.find({ userId });
+      res.status(200).json(records);
+    } catch (error) {
+      console.error("Error getting records by User ID:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }
