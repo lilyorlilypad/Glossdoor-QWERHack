@@ -48,11 +48,11 @@ respectively at the moment.**
 
 ### Company Catalogs API
 
-* GET `companycatalogs`
-* GET `companycatalogs/:companyId`
-* POST `companycatalogs`
-* PUT `companycatalogs/:companyId`
-* DELETE `companycatalogs/:companyId`
+* GET `/companycatalogs`
+* GET `/companycatalogs/:companyId`
+* POST `/companycatalogs`
+* PUT `/companycatalogs/:companyId`
+* DELETE `/companycatalogs/:companyId`
 
 
 ### Reviews API
