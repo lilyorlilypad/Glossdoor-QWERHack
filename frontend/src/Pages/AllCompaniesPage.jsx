@@ -48,7 +48,7 @@ const AllCompaniesPage = () => {
                               id={company._id} // Ensure you have a unique key for each item
                               title={company.companyName}
                               description={company.companyDescription}
-                              rating={company.ratings[0]}
+                              rating={company.averageMetricA?.toFixed(2) ?? "N/A"}
                               logo={`/${company.companyName}.png`}
                               // Add other necessary props
                           />
