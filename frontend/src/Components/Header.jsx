@@ -16,8 +16,11 @@ const Header = () => {
         >
           All Companies
         </a>
-        <a href="/LogIn" className="text-lg text-gray-800 hover:text-gray-600">
-          Log In
+        <a
+          style={{ cursor: "pointer" }}
+          className="text-lg text-gray-800 hover:text-gray-600"
+        >
+          My Profile
         </a>
       </div>
     </div>
