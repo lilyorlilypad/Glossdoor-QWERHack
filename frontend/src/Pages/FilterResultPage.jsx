@@ -3,12 +3,11 @@ import { useLocation } from "react-router-dom";
 import CompanyCard from "../Components/CompanyCard";
 import SearchBarWithFilter from "../Components/SearchBarWithFilter";
 import storageService from "../services/storage.service";
-import "./../styles/FilterResultPage.css";
 
 const FilterResultPage = () => {
   const location = useLocation();
   const { data } = location.state || { data: [] };
-  const [imageUrl, setImageUrl] = useState(""); // Single URL state
+  const [imageUrl, setImageUrl] = useState({}); // Single URL state
 
   useEffect(() => {
     const fetchUrl = async () => {
@@ -29,21 +28,27 @@ const FilterResultPage = () => {
   }, [data]);
 
   return (
-    <div className="filter-result-page">
+    <div className="filter-result-page mt-10">
       <header>{/* Other header content */}</header>
       <SearchBarWithFilter />
 
-      <div>
-        {data.length > 0 && (
-          <CompanyCard
-            key={data[0]._id} // Key isn't strictly necessary here since we're rendering a single item, but it's good practice
-            title={data[0].companyName}
-            companyDescription={data[0].companyDescription}
-            ratings={data[0].ratings ? data[0].ratings[0] : undefined}
-            image={imageUrl} // Pass the imageUrl directly
-          />
-        )}
-        {data.length === 0 && <p>No companies found.</p>}
+      <div className="px-4 py-2 flex justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 ">
+          {data.length > 0 ? (
+            data.map((company) => (
+              <CompanyCard
+                id={company._id} // Ensure you have a unique key for each item
+                title={company.companyName}
+                description={company.companyDescription}
+                rating={company.ratings[0]}
+                logo={`/${company.companyName}.png`}
+                // Add other necessary props
+              />
+            ))
+          ) : (
+            <p className="text-center">No companies found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
