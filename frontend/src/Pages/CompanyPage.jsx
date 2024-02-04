@@ -67,7 +67,7 @@ const CompanyPage = ({ match }) => {
         console.error(error.message);
         setAffinityGroups([]); // Default data: no groups lol.
       })
-  }, []);
+  }, [companyId]);
 
   return (
 
@@ -77,6 +77,7 @@ const CompanyPage = ({ match }) => {
         <div className=" p-6 container mx-auto bg-primary text-center rounded-lg">
             <h1 className="text-3xl font-bold text-dark mb-2 items-center">{companyData?.companyName}</h1>
             <img src={companyData?.logo} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
+            <p>Average Score: {companyData?.averageMetricA?.toFixed(2) ?? "N/A"}</p>
             <p className="text-darker">{companyData?.companyDescription}</p>
         </div>
 
