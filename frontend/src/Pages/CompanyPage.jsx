@@ -74,14 +74,24 @@ const CompanyPage = ({ match }) => {
     <div className="min-h-screen">
 
 
-      <div className=" p-6 container mx-auto bg-primary text-center rounded-lg">
-        <h1 className="text-3xl font-bold text-dark mb-2 items-center">{companyData?.companyName}</h1>
-        <img src={`/${companyData.companyName}.png`} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
-        <p>Average Score: {companyData?.averageMetricA?.toFixed(2) ?? "N/A"}</p>
-        <p className="text-darker mb-5">{companyData?.companyDescription}</p>
-        <Link to="/AddReviewPage" className="bg-secondary mt-5 font-bold text-lg text-white py-2 px-4 rounded hover:bg-secondary-darker transition duration-300">
-          Add Review
-        </Link>
+      <div className=" p-3 mt-5 container mx-auto bg-primary text-center rounded-lg flex flex-row">
+        <div className="flex flex-col space-x-4 p-3 m-5" style={{ width: '20%' }}>
+          <img src={`/${companyData.companyName}.png`} alt="logo" className="w-full h-full rounded-2xl flex-grow" />
+
+
+        </div>
+        <div className="flex flex-col items-start flex-grow justify-center text-left">
+          <h1 className="text-4xl font-bold text-dark mb-2 items-start">{companyData?.companyName}</h1>
+          <p className="text-darker mb-5 items-start text-lg">{companyData?.companyDescription}</p>
+          <div className="flex flex-row items-baseline items-end text-right justify-end">
+            <p>Rating: </p>
+            <p className={"text-4xl font-bold ml-1"}>{companyData?.averageMetricA?.toFixed(2) ?? "N/A"}</p>
+          </div>
+          <Link to="/AddReviewPage" className="bg-secondary mt-5 font-bold text-lg text-white py-2 px-4 rounded hover:bg-secondary-darker transition duration-300">
+            Add Review
+          </Link>
+        </div>
+
       </div>
 
       <div className="bg-white">
