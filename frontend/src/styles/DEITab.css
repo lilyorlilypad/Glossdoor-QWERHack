@@ -1,0 +1,9 @@
+.enlarge-on-hover {
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.enlarge-on-hover:hover {
+    transform: scale(1.04);
+}
