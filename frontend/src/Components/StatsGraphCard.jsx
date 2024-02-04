@@ -106,8 +106,8 @@ const StatsGraphCard = ({companyId}) => {
                 {
                     label: label,
                     data: chartData,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(135, 179, 184, 0.5)', // Adjusted for 'secondary' color
+                    borderColor: 'rgba(135, 179, 184, 1)', // Adjusted for 'secondary' color
                     borderWidth: 1,
                 },
             ],

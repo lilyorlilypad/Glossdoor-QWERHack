@@ -57,7 +57,7 @@ const WishlistTab = ({ companyId }) => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold">Wishlist</h2>
+            <h2 className="text-2xl font-bold">Wishlist</h2>
             <p className="mb-4">Here are the wishlist items associated with this company:</p>
             {wishlistItems.map((item) => (
                 <WishlistCard key={item._id} item={item} />
