@@ -60,11 +60,17 @@ const ReviewsTab = ({ companyData }) => {
 
     return (
         <div>
-            {reviews.map((review) => (
-
-                <ReviewCard key={review._id} review={review} />
-
-            ))}
+            {loading ? (
+                <div className="text-center text-darker">Loading reviews...</div>
+            ) : reviews.length === 0 ? (
+                <div className="text-center text-darker">No reviews available.</div>
+            ) : (
+                <div className="space-y-4">
+                    {reviews.map((review) => (
+                        <ReviewCard key={review._id} review={review} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
