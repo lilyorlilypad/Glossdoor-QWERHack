@@ -52,6 +52,9 @@ respectively at the moment.**
   * Optional query parameter `companyName` to filter by companies whose name
     *contain* (case-insensitive) the value e.g.
     `/companycatalogs?companyName=GreenTech%20Solutions`.
+  * Optional query parameters `ratingGreater` and/or `ratingLess` to filter by
+    companies whose average overall rating (metric A) are in the specified
+    range.
 * GET `/companycatalogs/:companyId`
 * POST `/companycatalogs`
 * PUT `/companycatalogs/:companyId`
