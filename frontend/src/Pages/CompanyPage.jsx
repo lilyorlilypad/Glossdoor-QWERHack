@@ -70,42 +70,50 @@ const CompanyPage = ({ match }) => {
   }, []);
 
   return (
-      <div className="min-h-screen bg-primary">
-        <div className="container mx-auto p-4">
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-dark mb-2">{companyData?.companyName}</h1>
-            <img src={companyData?.logo} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
-            <p className="text-darker">{companyData?.companyDescription}</p>
-          </div>
-        {/* TODO: when the buttons get wrapped to the next row (by shrinking width),
-          there is a huge gap between the rows. */}
-          <div className="flex justify-center gap-4 mb-6">
-            <button   className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'reviews' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
-
-                      onClick={() => setActiveTab('reviews')}>
-              Reviews
-            </button>
-            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'dei' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
-                     onClick={() => setActiveTab('dei')}>
-              DEI
-            </button>
-            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'stats' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
-                      onClick={() => setActiveTab('stats')}>
-              Stats
-            </button>
-            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'wishlist' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
-                     onClick={() => setActiveTab('wishlist')}>
-              Wishlist
-            </button>
-          </div>
-          <div className="tab-content bg-white p-6 rounded-xl shadow-lg">
-            {activeTab === 'reviews' && <ReviewsTab companyData={companyData} />}
-            {activeTab === 'dei' && <DEITab groups={affinityGroups} />}
-            {activeTab === 'stats' && <StatsTab companyData={companyData} />}
-            {activeTab === 'wishlist' && <WishlistTab companyId={companyData._id} />}
-          </div>
+      <div className={"bg-secondary"}>
+        <div className="container bg-primary">
+          <p>hello</p>
         </div>
       </div>
+      // <div className="min-h-screen">
+      //
+      //
+      //   <div className="mx-16 p-6 bg-primary text-center rounded-lg">
+      //       <h1 className="text-3xl font-bold text-dark mb-2 items-center">{companyData?.companyName}</h1>
+      //       <img src={companyData?.logo} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
+      //       <p className="text-darker">{companyData?.companyDescription}</p>
+      //   </div>
+      //
+      //   <div className="bg-white">
+      //     <div className="container mx-auto">
+      //       <div className="flex justify-center gap-4 mb-6">
+      //         <button   className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'reviews' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+      //
+      //                   onClick={() => setActiveTab('reviews')}>
+      //           Reviews
+      //         </button>
+      //         <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'dei' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+      //                  onClick={() => setActiveTab('dei')}>
+      //           DEI
+      //         </button>
+      //         <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'stats' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+      //                   onClick={() => setActiveTab('stats')}>
+      //           Stats
+      //         </button>
+      //         <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'wishlist' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+      //                  onClick={() => setActiveTab('wishlist')}>
+      //           Wishlist
+      //         </button>
+      //       </div>
+      //       <div className="tab-content bg-white p-6 rounded-xl shadow-lg">
+      //         {activeTab === 'reviews' && <ReviewsTab companyData={companyData} />}
+      //         {activeTab === 'dei' && <DEITab groups={affinityGroups} />}
+      //         {activeTab === 'stats' && <StatsTab companyData={companyData} />}
+      //         {activeTab === 'wishlist' && <WishlistTab companyId={companyData._id} />}
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
   );
 };
 
