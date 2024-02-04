@@ -18,16 +18,33 @@ module.exports = class CompanyCatalogController extends BaseController {
   }
 
   async getAllCompanyCatalogs(req, res) {
-    const { companyName } = req.query;
+    const { companyName, ratingLess, ratingGreater } = req.query;
     let query = {};
     if (companyName) {
       // Case-insensitive match of string anywhere in company name.
       query = { companyName: { $regex: new RegExp(companyName, "i") } };
     }
 
+    const ratingLessValue = Number(ratingLess ?? Infinity);
+    const ratingGreaterValue = Number(ratingGreater ?? -Infinity);
+    if (isNaN(ratingLessValue)) {
+      res.status(400).json({ error: `invalid ratingLess=${ratingLess}` });
+      return;
+    }
+    if (isNaN(ratingGreaterValue)) {
+      res.status(400).json({ error: `invalid ratingGreater=${ratingGreater}` });
+      return;
+    }
+    const ratingFilter = (company) => {
+      const { averageMetricA } = company;
+      if (averageMetricA == null) return true;
+      return averageMetricA <= ratingLessValue && averageMetricA >= ratingGreaterValue;
+    };
+
     try {
       const companyCatalogs = await CompanyCatalog.find(query);
-      res.json(companyCatalogs);
+      const filteredByRating = companyCatalogs.filter(ratingFilter);
+      res.status(200).json(filteredByRating);
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
     }
