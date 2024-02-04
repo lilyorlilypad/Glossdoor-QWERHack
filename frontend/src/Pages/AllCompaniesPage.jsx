@@ -6,6 +6,27 @@ import SearchBar from "../Components/SearchBar";
 import apiConfig from "../apiConfig";
 
 const AllCompaniesPage = () => {
+  const [companies, setCompanyData] = useState({});
+
+  useEffect(() => {
+    const companyURL = apiConfig.baseUrl + apiConfig.companyCatalogs.getAll;
+    console.log(companyURL);
+    fetch(companyURL)
+      .then((response) => {
+        if (!response.ok) {
+          // If the server responds with a 404, use mock data
+          if (response.status === 404) {
+            throw new Error("Company catalog not found, using mock data");
+          }
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCompanyData(data);
+      });
+  });
+
   return (
     <div className="filter-result-page">
       <header>{/* Other header content */}</header>
@@ -22,7 +43,6 @@ const AllCompaniesPage = () => {
               title={company.companyName}
               companyDescription={company.companyDescription}
               ratings={company.ratings ? company.ratings[0] : undefined}
-              image="" // Assuming each company has an 'imageUrl' field
             />
           ))
         ) : (
