@@ -3,6 +3,7 @@ import "./../styles/CompanyCard.css"; // Make sure to create a CSS file with the
 import { Link } from "react-router-dom";
 // Define the companyCard component
 
+
 const CompanyCard = ({ id, title, logo, rating, description }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4">

@@ -9,7 +9,9 @@ const StatsTab = ({ companyData }) => {
 
         <div>
             {/* Render stats */}
-            <p>Below are average scores of each metric and individual score distributions.</p>
+            <h2 className="text-2xl font-bold">Rating Statistics</h2>
+
+            <p className="mb-4">Below are average scores of each metric and individual score distributions.</p>
 
             <StatsGraphCard companyId={companyData._id} />
 

@@ -25,11 +25,11 @@ const WishlistCard = ({ item }) => {
     }, []);
 
         return (
-        <div className="bg-white p-4 rounded-lg shadow mb-4">
-            <p className="text-sm text-gray-500">Posted by: {username}</p>
-            <p className="mt-2">{item.content}</p>
-            <p className="text-sm text-gray-500 mt-4">Created at: {new Date(item.createdAt).toLocaleDateString()}</p>
-        </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg mb-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                <p className="text-xs font-semibold uppercase tracking-wide text-darker">Posted by: {username}</p>
+                <p className="mt-4 text-gray-700 text-justify">{item.content}</p>
+                <p className="text-xs text-gray-400 mt-4">Created at: {new Date(item.createdAt).toLocaleDateString()}</p>
+            </div>
     );
 };
 
