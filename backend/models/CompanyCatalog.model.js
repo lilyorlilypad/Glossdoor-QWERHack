@@ -12,7 +12,7 @@ const companyCatalogSchema = new Schema({
     metricB: Number,
     metricC: Number,
   },
-  totalMetricA: Number,
+  averageMetricA: Number,
   reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
