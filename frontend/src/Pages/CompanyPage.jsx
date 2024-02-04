@@ -80,20 +80,21 @@ const CompanyPage = ({ match }) => {
         {/* TODO: when the buttons get wrapped to the next row (by shrinking width),
           there is a huge gap between the rows. */}
           <div className="flex justify-center gap-4 mb-6">
-            <button className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none ${activeTab === 'reviews' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-                    onClick={() => setActiveTab('reviews')}>
+            <button   className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'reviews' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+
+                      onClick={() => setActiveTab('reviews')}>
               Reviews
             </button>
-            <button className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none ${activeTab === 'dei' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-                    onClick={() => setActiveTab('dei')}>
+            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'dei' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+                     onClick={() => setActiveTab('dei')}>
               DEI
             </button>
-            <button className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none ${activeTab === 'stats' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-                    onClick={() => setActiveTab('stats')}>
+            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'stats' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+                      onClick={() => setActiveTab('stats')}>
               Stats
             </button>
-            <button className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none ${activeTab === 'wishlist' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-                    onClick={() => setActiveTab('wishlist')}>
+            <button  className={`px-4 py-2 text-sm font-medium rounded-lg shadow-sm focus:outline-none transition-colors duration-300 ${activeTab === 'wishlist' ? 'bg-dark text-white' : 'bg-light-gray text-dark'}`}
+                     onClick={() => setActiveTab('wishlist')}>
               Wishlist
             </button>
           </div>

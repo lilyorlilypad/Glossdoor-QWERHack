@@ -22,27 +22,52 @@ const ReviewCard = ({ review }) => {
             }
         }
         fetchUsername();
-    }, []);
+    }, [review.userId]);
+    const averageScore = review.score
+        ? Object.values(review.score).reduce((total, score) => total + score, 0) / Object.values(review.score).length
+        : 0;
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-4">
-            <h3 className="text-lg font-semibold text-dark mb-2">{review.title}</h3>
-            <p className="text-sm text-darker mb-2">Reviewed by {username} on {new Date(review.createdAt).toLocaleDateString()}</p>
-            <div className="flex items-center justify-between mb-2">
-                {/* Metric scores */}
-                <div className="text-xs flex space-x-2">
-                    {review.score && Object.entries(review.score).map(([metricName, score]) => (
-                        <span key={metricName} className="inline-block bg-light-gray rounded-full px-3 py-1 text-sm font-semibold text-dark mr-2">
-          {metricDisplayNames[metricName] || metricName}: {score.toFixed(1)}
-        </span>
-                    ))}
+        <div className="bg-white rounded-lg shadow-md p-3 h-full overflow-hidden">
+            <div className="flex justify-end">
+                <div className="flex flex-col pr-6">
+                    <div className="text-4xl font-bold">{averageScore.toFixed(1)}</div>
+                    <div className="text-xs text-gray-500">
+                        <p>User: {username}</p>
+                        <p>Date: {new Date(review.createdAt).toLocaleDateString()}</p>
+                    </div>
+                </div>
+
+                <div className="flex-grow">
+                    <h3 className="text-xl font-semibold mb-1">{review.title}</h3>
+                    <p className="text-gray-600">{review.content}</p>
                 </div>
             </div>
-            <p className="text-darker">{review.content}</p>
-            <div className="flex justify-between items-center mt-4">
-                <button className="text-secondary">👍 {Math.round(review.upvotes)}</button>
-                <button className="text-darker">👎 {Math.round(review.downvotes)}</button>
+
+
+            <div className="flex justify-between items-end">
+                <div className="">
+                    <span className="text-gray-600 mr-1">Tags:</span>
+                    {review.tags.map((tag, index) => (
+                        <span key={index} className="bg-secondary text-dark rounded-full px-3 py-1 text-sm font-semibold mr-2">
+                        {tag}
+                    </span>
+                    ))}
+                </div>
+                <div className="flex space-x-2">
+                    <button className="flex items-center justify-center bg-primary text-white rounded-full h-10 w-10">
+                        <p>👍</p>
+                        <p className="text-xs">{Math.round(review.upvotes)}</p>
+                    </button>
+                    <button className="flex items-center justify-center bg-primary text-white rounded-full h-10 w-10">
+                        <p>👎</p>
+                        <p className="text-xs">{Math.round(review.upvotes)}</p>
+                    </button>
+                </div>
+
             </div>
+
+
         </div>
     );
 };
