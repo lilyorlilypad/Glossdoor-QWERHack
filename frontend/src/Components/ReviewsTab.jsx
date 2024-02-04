@@ -46,7 +46,7 @@ const ReviewsTab = ({ companyData }) => {
         }
         fetchReviews();
 
-    }, []);
+    }, [companyData._id]);
 
     console.log(reviews)
 

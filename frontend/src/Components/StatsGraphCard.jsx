@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import apiConfig from "../apiConfig";
 import Chart from 'chart.js/auto';
 import AverageScoreBar from './AverageScoreBar';
+import {metricDisplayNames} from "../utils/metricNames";
 
 
 const mockMetrics = {
@@ -133,8 +134,8 @@ const StatsGraphCard = ({companyId}) => {
                         {/*Histogram*/}
                         {Object.entries(metricsData).map(([metricName, metricValues], index) => (
                             <div key={index} className="mb-6">
-                                <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricName}`}</h3>
-                                <Bar data={prepareChartData(metricValues, metricName)} options={options}/>
+                                <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricDisplayNames[metricName] || metricName}`}</h3>
+                                <Bar data={prepareChartData(metricValues, metricDisplayNames[metricName] || metricName)} options={options}/>
                             </div>
                         ))}
                     </>
