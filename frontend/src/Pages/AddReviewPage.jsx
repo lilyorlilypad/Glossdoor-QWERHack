@@ -5,7 +5,7 @@ const AddReviewPage = () => {
   return (
     <>
       <RatingScale />
-      <div className="container">
+      <div className="review-container">
         <h2>COMMENT</h2>
         <textarea
           name="comments"
@@ -14,7 +14,7 @@ const AddReviewPage = () => {
           placeholder="Describe your experience working in this company"
         ></textarea>
       </div>
-      <div className="container">
+      <div className="review-container">
         <h2>Wishes</h2>
         <textarea
           name="comments"
