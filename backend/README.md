@@ -58,7 +58,7 @@ respectively at the moment.**
 * DELETE `/companycatalogs/:companyId`
 * GET `/companycatalogs/metrics/:companyId` Get the metrics of a company from
   its reviews.
-* POST `/companycatalogs/rating/:companyId` Set the `totalMetricsA` property of
+* POST `/companycatalogs/rating/:companyId` Set the `averageMetricA` property of
   the company. The rating is a query parameter e.g.
   `/companycatalogs/rating/ID_HERE?=rating=4.6`.
 
