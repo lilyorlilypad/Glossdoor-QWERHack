@@ -7,21 +7,21 @@ import "./../styles/Home.css";
 const Home = () => {
   return (
     <div >
-      <Link
-        to="/AllCompaniesPage"
-        className="text-blue-500 hover:text-blue-800"
-      >
-        Companies
-      </Link>
-      <Link
-        to="/FilterResultPage"
-        className="text-blue-500 hover:text-blue-800"
-      >
-        FilterResult Page
-      </Link>
-      <Link to="/AddReviewPage" className="text-blue-500 hover:text-blue-800">
-        AddReview Page
-      </Link>
+      {/*<Link*/}
+      {/*  to="/AllCompaniesPage"*/}
+      {/*  className="text-blue-500 hover:text-blue-800"*/}
+      {/*>*/}
+      {/*  Companies*/}
+      {/*</Link>*/}
+      {/*<Link*/}
+      {/*  to="/FilterResultPage"*/}
+      {/*  className="text-blue-500 hover:text-blue-800"*/}
+      {/*>*/}
+      {/*  FilterResult Page*/}
+      {/*</Link>*/}
+      {/*<Link to="/AddReviewPage" className="text-blue-500 hover:text-blue-800">*/}
+      {/*  AddReview Page*/}
+      {/*</Link>*/}
 
       
       {/*  
