@@ -14,6 +14,7 @@ module.exports = class CompanyCatalogController extends BaseController {
     this.router.put("/:companyId", this.updateCompanyCatalog.bind(this));
     this.router.delete("/:companyId", this.deleteCompanyCatalog.bind(this));
     this.router.get("/metrics/:companyId", this.getMetrics.bind(this));
+    this.router.post("/rating/:companyId", this.setTotalOverallForCompany.bind(this));
   }
 
   async getAllCompanyCatalogs(req, res) {
@@ -149,6 +150,27 @@ module.exports = class CompanyCatalogController extends BaseController {
       res.status(500).json({ error: "Internal Server Error" });
     } else {
       res.status(200).json(metrics);
+    }
+  }
+
+  // Workaround for average rating problem. Compute once in the frontend, and
+  // then update database with the average overall rating with this function.
+  async setTotalOverallForCompany(req, res) {
+    const { companyId } = req.params;
+    const { rating } = req.query;
+    const ratingValue = Number(rating);
+    if (isNaN(ratingValue)) {
+      res.status(400).json({ error: `invalid rating=${rating}` });
+      return;
+    }
+    try {
+      const company = await CompanyCatalog.findByIdAndUpdate(companyId, {
+        $set: { totalMetricA: ratingValue },
+      });
+      res.status(200).json(company);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
     }
   }
 }
