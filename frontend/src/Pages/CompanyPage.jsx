@@ -9,9 +9,9 @@ import apiConfig from "../apiConfig";
 
 const mockCompanyData = {
   _id: "1",
-  companyName: "Example Company",
+  companyName: "Loading...",
   logo: "https://via.placeholder.com/150",
-  companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
+  companyDescription: "Loading Database Information...",
   deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
   ratings: {
     metricA: 238,
