@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Home!</h1>
-      <Link to="/company" className="text-blue-500 hover:text-blue-800">
-        Company Page
+      <Link to="/AllCompaniesPage" className="text-blue-500 hover:text-blue-800">
+        Companies
       </Link>
       <Link
         to="/FilterResultPage"
