@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import CompanyCard from "../Components/CompanyCard";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./../styles/FilterResultPage.css";
-import FilterBar from "../Components/FilterBar";
-import SearchBar from "../Components/SearchBar";
+import CompanyCard from "../Components/CompanyCard";
+import SearchBarWithFilter from "../Components/SearchBarWithFilter";
 import storageService from "../services/storage.service";
+import "./../styles/FilterResultPage.css";
 
 const FilterResultPage = () => {
   const location = useLocation();
@@ -32,10 +31,7 @@ const FilterResultPage = () => {
   return (
     <div className="filter-result-page">
       <header>{/* Other header content */}</header>
-      <div className="searchBar-container">
-        <SearchBar className="result-search" />
-      </div>
-      <FilterBar />
+      <SearchBarWithFilter />
 
       <div>
         {data.length > 0 && (

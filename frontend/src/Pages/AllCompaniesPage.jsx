@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CompanyCard from "../Components/CompanyCard";
-import "./../styles/AllCompaniesPage.css";
-import FilterBar from "../Components/FilterBar";
-import SearchBar from "../Components/SearchBar";
+import SearchBarWithFilter from "../Components/SearchBarWithFilter";
 import apiConfig from "../apiConfig";
+import "./../styles/AllCompaniesPage.css";
 
 const AllCompaniesPage = () => {
   const [companies, setCompanyData] = useState({});
@@ -26,28 +25,28 @@ const AllCompaniesPage = () => {
         setCompanyData(data);
       });
   });
-
   return (
     <div className="filter-result-page">
       <header>{/* Other header content */}</header>
-      <div className="searchBar-container">
-        <SearchBar className="result-search" />
-      </div>
-      <FilterBar />
+      <SearchBarWithFilter />
 
-      <div className="company-container">
-        {companies.length > 0 ? (
-          companies.map((company) => (
-            <CompanyCard
-              key={company._id} // Ensure you have a unique key for each item
-              title={company.companyName}
-              companyDescription={company.companyDescription}
-              ratings={company.ratings ? company.ratings[0] : undefined}
-            />
-          ))
-        ) : (
-          <p>No companies found.</p>
-        )}
+      <div className="px-4 py-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {companies.length > 0 ? (
+            companies.map((company) => (
+              <CompanyCard
+                key={company._id} // Ensure you have a unique key for each item
+                title={company.companyName}
+                description={company.companyDescription}
+                rating={company.ratings[0]}
+                logo={`/${company.companyName}.png`}
+              // Add other necessary props
+              />
+            ))
+          ) : (
+            <p className="text-center">No companies found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
