@@ -8,6 +8,9 @@ import FilterResultPage from "./Pages/FilterResultPage";
 import AddReviewPage from "./Pages/AddReviewPage";
 import AllCompaniesPage from "./Pages/AllCompaniesPage";
 import Header from "./Components/Header";
+
+import 'tailwindcss/tailwind.css'; // Tailwind CSS import comes last
+
 const App = () => {
   return (
     <>
