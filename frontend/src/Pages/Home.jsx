@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import FilterBar, { RATING_SETTINGS } from "./../Components/FilterBar";
-import SearchBar from "./../Components/SearchBar";
+import SearchBarWithFilter from "../Components/SearchBarWithFilter";
 import "./../styles/Home.css";
 
 const Home = () => {
-  const [ratingSetting, setRatingSetting] = useState(RATING_SETTINGS.NONE);
-
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Home!</h1>
@@ -29,8 +26,7 @@ const Home = () => {
         <img src="/Glossdoor.png"></img>
       </div>
 
-      <SearchBar />
-      <FilterBar ratingSetting={ratingSetting} setRatingSetting={setRatingSetting} />
+      <SearchBarWithFilter />
     </div>
   );
 };

@@ -9,7 +9,8 @@ export const RATING_SETTINGS = {
   BELOW_3: 4,
 };
 
-const FilterBar = ({ ratingSetting, setRatingSetting }) => {
+const FilterBar = ({ filterSetting, setFilterSetting }) => {
+
   const buttonsConfig = [
     ["Rating above 4.5", RATING_SETTINGS.ABOVE_4_DOT_5],
     ["Rating 4.0-4.5", RATING_SETTINGS.BETWEEN_4_AND_4_DOT_5],
@@ -21,16 +22,16 @@ const FilterBar = ({ ratingSetting, setRatingSetting }) => {
     const handleClick = () => {
       // The filter is already on this setting, so the button was clicked to
       // REMOVE the filter.
-      if (ratingSetting === setting) {
-        setRatingSetting(RATING_SETTINGS.NONE);
+      if (filterSetting === setting) {
+        setFilterSetting(RATING_SETTINGS.NONE);
         // Otherwise this button was clicked to APPLY the filter.
       } else {
-        setRatingSetting(setting);
+        setFilterSetting(setting);
       }
     };
 
     let className = "filter-button";
-    if (ratingSetting === setting) {
+    if (filterSetting === setting) {
       className += " filter-button-selected";
     }
     return (
