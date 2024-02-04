@@ -7,9 +7,11 @@ import CompanyPage from "./Pages/CompanyPage"; // Adjust the path based on your 
 import FilterResultPage from "./Pages/FilterResultPage";
 import AddReviewPage from "./Pages/AddReviewPage";
 import AllCompaniesPage from "./Pages/AllCompaniesPage";
+import Header from "./Components/Header";
 const App = () => {
   return (
     <>
+      <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

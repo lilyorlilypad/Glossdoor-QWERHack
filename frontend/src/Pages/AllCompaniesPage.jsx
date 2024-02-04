@@ -6,27 +6,6 @@ import SearchBar from "../Components/SearchBar";
 import apiConfig from "../apiConfig";
 
 const AllCompaniesPage = () => {
-  const [companies, setCompanies] = useState([]); // State to store companies
-
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      let uri = apiConfig.baseUrl + apiConfig.companyCatalogs.getAll;
-
-      try {
-        const response = await fetch(uri); // Make the GET request
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`); // Throw an error on a bad status
-        }
-        const data = await response.json(); // Parse the JSON from the response
-        setCompanies(data); // Update state with the fetched companies
-      } catch (error) {
-        console.error("Failed to fetch companies:", error);
-      }
-    };
-
-    fetchCompanies();
-  }, []); // Empty dependency array means this effect runs once on mount
-
   return (
     <div className="filter-result-page">
       <header>{/* Other header content */}</header>
@@ -43,7 +22,7 @@ const AllCompaniesPage = () => {
               title={company.companyName}
               companyDescription={company.companyDescription}
               ratings={company.ratings ? company.ratings[0] : undefined}
-              image={company.imageUrl} // Assuming each company has an 'imageUrl' field
+              image="" // Assuming each company has an 'imageUrl' field
             />
           ))
         ) : (
