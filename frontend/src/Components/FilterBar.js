@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./../styles/FilterBar.css";
 
 export const RATING_SETTINGS = {
@@ -9,8 +10,13 @@ export const RATING_SETTINGS = {
   BELOW_3: 4,
 };
 
-const FilterBar = ({ filterSetting, setFilterSetting }) => {
+const FilterBar = () => {
+  const [filterSetting, setFilterSetting] = useState(RATING_SETTINGS.NONE);
+  const navigate = useNavigate();
 
+  /**
+   * @type {const}
+   */
   const buttonsConfig = [
     ["Rating above 4.5", RATING_SETTINGS.ABOVE_4_DOT_5],
     ["Rating 4.0-4.5", RATING_SETTINGS.BETWEEN_4_AND_4_DOT_5],
@@ -24,9 +30,28 @@ const FilterBar = ({ filterSetting, setFilterSetting }) => {
       // REMOVE the filter.
       if (filterSetting === setting) {
         setFilterSetting(RATING_SETTINGS.NONE);
-        // Otherwise this button was clicked to APPLY the filter.
+        navigate("/AllCompaniesPage");
+      // Otherwise this button was clicked to APPLY the filter.
       } else {
+        let queryParams;
+        switch (setting) {
+          case RATING_SETTINGS.ABOVE_4_DOT_5:
+            queryParams = "?ratingGreater=4.5";
+            break;
+          case RATING_SETTINGS.BETWEEN_4_AND_4_DOT_5:
+            queryParams = "?ratingGreater=4&ratingLess=4.5";
+            break;
+          case RATING_SETTINGS.BETWEEN_3_AND_4:
+            queryParams = "?ratingGreater=3&ratingLess=4";
+            break;
+          case RATING_SETTINGS.BELOW_3:
+            queryParams = "?ratingLess=3";
+            break;
+          default:
+            queryParams = "";
+        }
         setFilterSetting(setting);
+        navigate(`/AllCompaniesPage${queryParams}`);
       }
     };
 
