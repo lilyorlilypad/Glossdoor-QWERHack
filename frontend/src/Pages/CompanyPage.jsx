@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-
 import DEITab from "../Components/DEITab";
 import ReviewsTab from "../Components/ReviewsTab";
 import StatsTab from "../Components/StatsTab";
@@ -12,16 +11,14 @@ const mockCompanyData = {
   _id: "1",
   companyName: "Example Company",
   logo: "https://via.placeholder.com/150",
-  companyDescription:
-    "This is a mock description of Example Company, showcasing our values, mission, and services.",
-  deiEfforts:
-    "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
+  companyDescription: "This is a mock description of Example Company, showcasing our values, mission, and services.",
+  deiEfforts: "At Example Company, we are committed to fostering a diverse, equitable, and inclusive environment for all our employees and stakeholders.",
   ratings: {
     metricA: 238,
     metricB: 90,
-    metricC: -123,
+    metricC: -123
   },
-  reviews: [],
+  reviews: []
   // Add more fields as needed for reviews, stats, etc.
 };
 
@@ -29,71 +26,51 @@ const CompanyPage = ({ match }) => {
   const { companyId } = useParams();
   const [companyData, setCompanyData] = useState(mockCompanyData);
   const [affinityGroups, setAffinityGroups] = useState([]);
-  const [activeTab, setActiveTab] = useState("reviews");
+  const [activeTab, setActiveTab] = useState('reviews');
 
   useEffect(() => {
-    const companyApiUrl =
-      apiConfig.baseUrl + apiConfig.companyCatalogs.getById(companyId);
-    const affinityGroupsApiUrl =
-      apiConfig.baseUrl + apiConfig.affinityGroups.getByCompanyId(companyId);
-    console.log(companyApiUrl);
+    const companyApiUrl = apiConfig.baseUrl + apiConfig.companyCatalogs.getById(companyId);
+    const affinityGroupsApiUrl = apiConfig.baseUrl + apiConfig.affinityGroups.getByCompanyId(companyId);
+    console.log(companyApiUrl)
     fetch(companyApiUrl)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           // If the server responds with a 404, use mock data
           if (response.status === 404) {
-            throw new Error("Company catalog not found, using mock data");
+            throw new Error('Company catalog not found, using mock data');
           }
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then((data) => {
+      .then(data => {
         setCompanyData(data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error.message);
         // Set to mock data in case of error or if no data found
         setCompanyData(mockCompanyData); // Ensure mockCompanyData is defined
       });
     fetch(affinityGroupsApiUrl)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           // If the server responds with a 404, use mock data
           if (response.status === 404) {
-            throw new Error("Company catalog not found, using default data");
+            throw new Error('Company catalog not found, using default data');
           }
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
       .then(setAffinityGroups)
-      .catch((error) => {
+      .catch(error => {
         console.error(error.message);
         setAffinityGroups([]); // Default data: no groups lol.
       })
   }, [companyId]);
 
   return (
-    <div className="min-h-screen">
-      <div className=" p-6 container mx-auto bg-primary text-center rounded-lg">
-        <h1 className="text-3xl font-bold text-dark mb-2 items-center">
-          {companyData?.companyName}
-        </h1>
-        <img
-          src={`/${companyData.companyName}.png`}
-          alt="logo"
-          className="mx-auto mb-2 w-24 h-24 object-cover"
-        />
-        <p>Average Score: {companyData?.averageMetricA?.toFixed(2) ?? "N/A"}</p>
-        <p className="text-darker mb-5">{companyData?.companyDescription}</p>
-        <Link
-          to="/AddReviewPage"
-          className="bg-secondary mt-5 font-bold text-lg text-white py-2 px-4 rounded hover:bg-secondary-darker transition duration-300"
-        >
-          Add Review
-        </Link>
-      </div>
+
     <div className="min-h-screen">
 
 
