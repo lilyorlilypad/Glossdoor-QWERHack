@@ -2,21 +2,24 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="header">
-      <nav>
-        <ul>
-          <li>
-            <a href="/home">Home</a>
-          </li>
-          {/* Other navigation links */}
-          <li>
-            <a href="/AllCompaniesPage">All Companies</a>
-          </li>
-          <li>
-            <a href="/LogIn">Log In</a>
-          </li>
-        </ul>
-      </nav>
+    <div className="flex flex-row justify-between items-center px-6 py-4 bg-white shadow-md">
+      <a
+        href="/"
+        className="text-xl font-bold text-gray-800 hover:text-gray-600"
+      >
+        Home
+      </a>
+      <div className="flex space-x-4">
+        <a
+          href="/AllCompaniesPage"
+          className="text-lg text-gray-800 hover:text-gray-600"
+        >
+          All Companies
+        </a>
+        <a href="/LogIn" className="text-lg text-gray-800 hover:text-gray-600">
+          Log In
+        </a>
+      </div>
     </div>
   );
 };

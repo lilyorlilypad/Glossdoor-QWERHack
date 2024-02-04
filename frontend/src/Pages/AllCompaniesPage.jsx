@@ -26,7 +26,6 @@ const AllCompaniesPage = () => {
         setCompanyData(data);
       });
   });
-
   return (
     <div className="filter-result-page">
       <header>{/* Other header content */}</header>
@@ -35,19 +34,23 @@ const AllCompaniesPage = () => {
       </div>
       <FilterBar />
 
-      <div className="company-container">
-        {companies.length > 0 ? (
-          companies.map((company) => (
-            <CompanyCard
-              key={company._id} // Ensure you have a unique key for each item
-              title={company.companyName}
-              companyDescription={company.companyDescription}
-              ratings={company.ratings ? company.ratings[0] : undefined}
-            />
-          ))
-        ) : (
-          <p>No companies found.</p>
-        )}
+      <div className="px-4 py-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {companies.length > 0 ? (
+            companies.map((company) => (
+              <CompanyCard
+                key={company._id} // Ensure you have a unique key for each item
+                title={company.companyName}
+                description={company.companyDescription}
+                rating={company.ratings[0]}
+                logo={`/${company.companyName}.png`}
+                // Add other necessary props
+              />
+            ))
+          ) : (
+            <p className="text-center">No companies found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
