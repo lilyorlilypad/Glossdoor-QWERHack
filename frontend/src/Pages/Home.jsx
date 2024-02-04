@@ -6,7 +6,6 @@ import "./../styles/Home.css";
 const Home = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Home!</h1>
       <Link
         to="/AllCompaniesPage"
         className="text-blue-500 hover:text-blue-800"
@@ -23,7 +22,11 @@ const Home = () => {
         AddReview Page
       </Link>
       <div className="logo">
-        <img src="/Glossdoor.png"></img>
+        <img src="/Glossdoor.png" alt="Glossdoor"></img>
+      </div>
+
+      <div className="Background">
+        <img src="/home_bg.png"></img>
       </div>
 
       <SearchBarWithFilter />
