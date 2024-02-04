@@ -26,6 +26,10 @@ const Home = () => {
         <img src="/Glossdoor.png" alt="Glossdoor"></img>
       </div>
 
+      <div className="Background">
+      <img src="/home_bg.png"></img>
+            </div>
+
       <SearchBar />
       <FilterBar />
     </div>
