@@ -30,7 +30,7 @@ const AllCompaniesPage = () => {
     <div className="filter-result-page  mt-10">
       <header></header>
       <SearchBarWithFilter />
-      <div className="px-4 py-2">
+      <div className="px-4 py-2 flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {companies.length > 0 ? (
             companies.map((company) => (
