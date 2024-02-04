@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import Chart from 'chart.js/auto';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import apiConfig from "../apiConfig";
-import Chart from 'chart.js/auto';
+import { metricDisplayNames } from "../utils/metricNames";
 import AverageScoreBar from './AverageScoreBar';
-import {metricDisplayNames} from "../utils/metricNames";
+
+console.log(Chart); // Prevent auto-remove import.
 
 
 const mockMetrics = {
@@ -13,10 +15,19 @@ const mockMetrics = {
     "MetricD": [1, 2, 3, 4, 5],
     "MetricE": [1, 1, 1, 1, 1],
 }
-const StatsGraphCard = ({companyId}) => {
+const StatsGraphCard = ({ companyId }) => {
     const [metricsData, setMetricsData] = useState({});
     const [averageScores, setAverageScores] = useState({});
 
+    function computeOverallAverage(averageScores) {
+        return (
+            averageScores.metricA +
+            averageScores.metricB +
+            averageScores.metricC +
+            averageScores.metricD +
+            averageScores.metricE
+        ) / 5;
+    }
 
     useEffect(() => {
         const getMetricsByCompanyIdUrl = apiConfig.baseUrl + apiConfig.companyCatalogs.getMetrics(companyId);
@@ -36,9 +47,9 @@ const StatsGraphCard = ({companyId}) => {
                     setMetricsData(metrics);
                 })
                 .catch(error => {
-                console.error("Failed to fetch metrics:", error);
-                setMetricsData({});
-            })
+                    console.error("Failed to fetch metrics:", error);
+                    setMetricsData({});
+                })
 
 
         };
@@ -62,6 +73,19 @@ const StatsGraphCard = ({companyId}) => {
     }, [metricsData]); // Dependency array includes metricsData
     console.log(metricsData)
     console.log(metricsData.length)
+
+
+    useEffect(() => {
+        const overallAverage = computeOverallAverage(averageScores);
+        const updateCompanyAverageUri = apiConfig.baseUrl + apiConfig.companyCatalogs.updateAverage(companyId) +
+            "?rating=" + encodeURIComponent(overallAverage);
+
+        const updateCompanyAverage = async () => {
+            await fetch(updateCompanyAverageUri, { method: "POST" });
+        };
+
+        updateCompanyAverage();
+    }, [averageScores, companyId]);
 
 
     const options = {
@@ -118,28 +142,28 @@ const StatsGraphCard = ({companyId}) => {
     return (
         <div>
             {Object.keys(metricsData).length === 0 ? (
-                    <p>No metrics data available.</p> // Filler message when metricsData is empty
-                ) : (
-                    <>
-                        {/*Average score*/}
-                        {Object.entries(averageScores).map(([metricName, avg], index) => (
-                            <AverageScoreBar
-                                key={index}
-                                metricName={metricName}
-                                averageScore={avg}
-                                maxScore={5}
-                            />
-                        ))}
+                <p>No metrics data available.</p> // Filler message when metricsData is empty
+            ) : (
+                <>
+                    {/*Average score*/}
+                    {Object.entries(averageScores).map(([metricName, avg], index) => (
+                        <AverageScoreBar
+                            key={index}
+                            metricName={metricName}
+                            averageScore={avg}
+                            maxScore={5}
+                        />
+                    ))}
 
-                        {/*Histogram*/}
-                        {Object.entries(metricsData).map(([metricName, metricValues], index) => (
-                            <div key={index} className="mb-6">
-                                <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricDisplayNames[metricName] || metricName}`}</h3>
-                                <Bar data={prepareChartData(metricValues, metricDisplayNames[metricName] || metricName)} options={options}/>
-                            </div>
-                        ))}
-                    </>
-                )
+                    {/*Histogram*/}
+                    {Object.entries(metricsData).map(([metricName, metricValues], index) => (
+                        <div key={index} className="mb-6">
+                            <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricDisplayNames[metricName] || metricName}`}</h3>
+                            <Bar data={prepareChartData(metricValues, metricDisplayNames[metricName] || metricName)} options={options} />
+                        </div>
+                    ))}
+                </>
+            )
             }
         </div>
     );
