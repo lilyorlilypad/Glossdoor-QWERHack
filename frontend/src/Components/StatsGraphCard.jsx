@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import apiConfig from "../apiConfig";
 import Chart from 'chart.js/auto';
+import AverageScoreBar from './AverageScoreBar';
+import {metricDisplayNames} from "../utils/metricNames";
 
 
 const mockMetrics = {
@@ -13,6 +15,8 @@ const mockMetrics = {
 }
 const StatsGraphCard = ({companyId}) => {
     const [metricsData, setMetricsData] = useState({});
+    const [averageScores, setAverageScores] = useState({});
+
 
     useEffect(() => {
         const getMetricsByCompanyIdUrl = apiConfig.baseUrl + apiConfig.companyCatalogs.getMetrics(companyId);
@@ -35,10 +39,27 @@ const StatsGraphCard = ({companyId}) => {
                 console.error("Failed to fetch metrics:", error);
                 setMetricsData({});
             })
+
+
         };
+
         fetchAndSetMetricsData();
+
+
     }, [companyId]);
 
+    useEffect(() => {
+        // Check if metricsData is not empty
+        if (Object.keys(metricsData).length > 0) {
+            const averages = Object.fromEntries(
+                Object.entries(metricsData).map(([key, values]) => [
+                    key,
+                    values.reduce((sum, val) => sum + val, 0) / values.length
+                ])
+            );
+            setAverageScores(averages);
+        }
+    }, [metricsData]); // Dependency array includes metricsData
     console.log(metricsData)
     console.log(metricsData.length)
 
@@ -99,12 +120,25 @@ const StatsGraphCard = ({companyId}) => {
             {Object.keys(metricsData).length === 0 ? (
                     <p>No metrics data available.</p> // Filler message when metricsData is empty
                 ) : (
-                    Object.entries(metricsData).map(([metricName, metricValues], index) => (
-                        <div key={index} className="mb-6">
-                            <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricName}`}</h3>
-                            <Bar data={prepareChartData(metricValues, metricName)} options={options} />
-                        </div>
-                    ))
+                    <>
+                        {/*Average score*/}
+                        {Object.entries(averageScores).map(([metricName, avg], index) => (
+                            <AverageScoreBar
+                                key={index}
+                                metricName={metricName}
+                                averageScore={avg}
+                                maxScore={5}
+                            />
+                        ))}
+
+                        {/*Histogram*/}
+                        {Object.entries(metricsData).map(([metricName, metricValues], index) => (
+                            <div key={index} className="mb-6">
+                                <h3 className="text-lg font-semibold mb-2">{`Histogram for ${metricDisplayNames[metricName] || metricName}`}</h3>
+                                <Bar data={prepareChartData(metricValues, metricDisplayNames[metricName] || metricName)} options={options}/>
+                            </div>
+                        ))}
+                    </>
                 )
             }
         </div>

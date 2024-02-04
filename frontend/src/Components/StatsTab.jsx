@@ -9,11 +9,7 @@ const StatsTab = ({ companyData }) => {
 
         <div>
             {/* Render stats */}
-            {statsArray.map(([metric, value], index) => (
-                <div key={index} className="mb-2">
-                    <strong>{metric}</strong>: {value}
-                </div>
-            ))}
+            <p>Below are average scores of each metric and individual score distributions.</p>
 
             <StatsGraphCard companyId={companyData._id} />
 
