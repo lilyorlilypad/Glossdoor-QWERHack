@@ -76,7 +76,7 @@ const CompanyPage = ({ match }) => {
 
       <div className=" p-6 container mx-auto bg-primary text-center rounded-lg">
         <h1 className="text-3xl font-bold text-dark mb-2 items-center">{companyData?.companyName}</h1>
-        <img src={companyData?.logo} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
+        <img src={`/${companyData.companyName}.png`} alt="logo" className="mx-auto mb-2 w-24 h-24 object-cover" />
         <p>Average Score: {companyData?.averageMetricA?.toFixed(2) ?? "N/A"}</p>
         <p className="text-darker mb-5">{companyData?.companyDescription}</p>
         <Link to="/AddReviewPage" className="bg-secondary mt-5 font-bold text-lg text-white py-2 px-4 rounded hover:bg-secondary-darker transition duration-300">
