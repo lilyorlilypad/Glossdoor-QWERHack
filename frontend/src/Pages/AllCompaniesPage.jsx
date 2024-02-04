@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import CompanyCard from "../Components/CompanyCard";
 import SearchBarWithFilter from "../Components/SearchBarWithFilter";
 import apiConfig from "../apiConfig";
@@ -6,9 +7,11 @@ import apiConfig from "../apiConfig";
 
 const AllCompaniesPage = () => {
   const [companies, setCompanyData] = useState({});
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const companyURL = apiConfig.baseUrl + apiConfig.companyCatalogs.getAll;
+    const companyURL = apiConfig.baseUrl + apiConfig.companyCatalogs.getAll +
+     "?"  + searchParams.toString();
     console.log(companyURL);
     fetch(companyURL)
       .then((response) => {
@@ -24,7 +27,7 @@ const AllCompaniesPage = () => {
       .then((data) => {
         setCompanyData(data);
       });
-  });
+  }, [searchParams]);
   return (
     <div className="filter-result-page mt-10">
       <header></header>
