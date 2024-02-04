@@ -21,13 +21,17 @@ const Home = () => {
       <Link to="/AddReviewPage" className="text-blue-500 hover:text-blue-800">
         AddReview Page
       </Link>
-      <div className="logo">
-        <img src="/Glossdoor.png" alt="Glossdoor"></img>
-      </div>
+        <div className="relative h-screen w-full">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+                <img src="/home_bg.png" alt="Background" className="h-full w-full object-cover filter blur-lg" />
+            </div>
 
-      <div className="Background">
-        <img src="/home_bg.png"></img>
-      </div>
+            {/* Logo Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+                <img src="/Glossdoor.png" alt="Glossdoor" className="h-40" /> {/* Adjust the size as needed */}
+            </div>
+        </div>
 
       <SearchBarWithFilter />
     </div>
