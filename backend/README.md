@@ -63,7 +63,7 @@ respectively at the moment.**
   its reviews.
 * POST `/companycatalogs/rating/:companyId` Set the `averageMetricA` property of
   the company. The rating is a query parameter e.g.
-  `/companycatalogs/rating/ID_HERE?=rating=4.6`.
+  `/companycatalogs/rating/ID_HERE?rating=4.6`.
 
 ### Reviews API
 
