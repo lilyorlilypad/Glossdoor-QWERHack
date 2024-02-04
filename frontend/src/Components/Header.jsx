@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="flex flex-row justify-between items-center px-6 py-4 bg-white shadow-md">
+    <div className="flex flex-row justify-between items-center px-6 py-4 bg-white shadow-md ">
       <a
         href="/"
         className="text-xl font-bold text-gray-800 hover:text-gray-600"
